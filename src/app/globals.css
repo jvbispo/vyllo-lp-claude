@@ -1,26 +1,86 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-vyllo: #0066ff;
+  --color-vyllo-light: #e8f1ff;
+  --font-sans: var(--font-inter);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: #fafafa;
+  color: #0a0a0a;
+  font-family: var(--font-sans), system-ui, -apple-system, sans-serif;
+}
+
+::selection {
+  background-color: #0066ff;
+  color: white;
+}
+
+/* Subtle dot grid background */
+.dot-grid {
+  background-image: radial-gradient(circle, #d4d4d4 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Grid lines pattern (dark backgrounds) */
+.grid-lines-dark {
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.04) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Grid lines pattern (light backgrounds) */
+.grid-lines-light {
+  background-image:
+    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Scan lines — horizontal only, finer */
+.scan-lines {
+  background-image: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(255, 255, 255, 0.015) 3px,
+    rgba(255, 255, 255, 0.015) 4px
+  );
+}
+
+/* Colored grid accent — blue-tinted grid for dark sections */
+.grid-accent {
+  background-image:
+    linear-gradient(rgba(0, 102, 255, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0, 102, 255, 0.06) 1px, transparent 1px);
+  background-size: 48px 48px;
+}
+
+/* Glow effect */
+.glow-blue {
+  background: radial-gradient(
+    ellipse 60% 50% at 50% 50%,
+    rgba(0, 102, 255, 0.08) 0%,
+    transparent 70%
+  );
+}
+
+.glow-blue-strong {
+  background: radial-gradient(
+    ellipse 50% 40% at 50% 50%,
+    rgba(0, 102, 255, 0.12) 0%,
+    transparent 70%
+  );
+}
+
+/* Animated beam line */
+@keyframes beam {
+  0%, 100% { transform: translateX(-100%); }
+  50% { transform: translateX(400%); }
 }
