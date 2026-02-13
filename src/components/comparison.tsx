@@ -16,8 +16,7 @@ const ROWS: {
   { feature: "Timeline do paciente", vyllo: true, codental: false, capim: false, do_: false },
   { feature: "Orcamentos integrados", vyllo: true, codental: true, capim: true, do_: false },
   { feature: "Financeiro completo", vyllo: true, codental: true, capim: true, do_: "partial" },
-  { feature: "Recibos em PDF", vyllo: true, codental: false, capim: false, do_: false },
-  { feature: "WhatsApp incluso", vyllo: true, codental: "R$0,07/msg", capim: true, do_: true },
+{ feature: "WhatsApp incluso", vyllo: true, codental: "R$0,07/msg", capim: true, do_: true },
   { feature: "Interface moderna", vyllo: true, codental: false, capim: "partial", do_: false },
   { feature: "A partir de", vyllo: "R$59/mes", codental: "R$79,90", capim: "R$99,90", do_: "R$55" },
 ]

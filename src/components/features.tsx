@@ -9,20 +9,18 @@ import {
   DollarSign,
   MessageCircle,
   ClipboardList,
-  ReceiptText,
 } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
-/* ── Animated mini-illustrations ─────────────────── */
+/* ── Animated mini-illustrations with idle loops ── */
 
 function AgendaVisual() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
 
   const hours = ["08:00", "09:00", "10:00", "11:00", "12:00"]
-  /* Each slot = 25% of the grid height (4 intervals between 5 hours) */
   const appointments = [
     { slot: 0, spans: 1.5, color: "#0066ff", name: "Maria S.", proc: "Limpeza", delay: 0.3 },
     { slot: 1.5, spans: 1, color: "#8b5cf6", name: "Carlos R.", proc: "Restauracao", delay: 0.45 },
@@ -43,17 +41,24 @@ function AgendaVisual() {
           {[1, 2, 3, 4, 5].map((d) => (
             <div
               key={d}
-              className={`h-6 w-6 rounded-md text-center text-[10px] leading-6 ${d === 3 ? "bg-[#0066ff]/10 font-semibold text-[#0066ff]" : "text-neutral-400"}`}
+              className={`relative h-6 w-6 rounded-md text-center text-[10px] leading-6 ${d === 3 ? "bg-[#0066ff]/10 font-semibold text-[#0066ff]" : "text-neutral-400"}`}
             >
               {d + 9}
+              {/* Pulsing ring on selected day */}
+              {d === 3 && (
+                <motion.div
+                  className="absolute inset-0 rounded-md border border-[#0066ff]/30"
+                  animate={{ scale: [1, 1.3, 1], opacity: [0.5, 0, 0.5] }}
+                  transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut" }}
+                />
+              )}
             </div>
           ))}
         </div>
       </motion.div>
 
-      {/* Time grid — fills remaining height */}
+      {/* Time grid */}
       <div className="relative flex min-h-0 flex-1 gap-3">
-        {/* Hours column — aligned to grid lines */}
         <div className="flex flex-col justify-between text-[9px] text-neutral-300">
           {hours.map((h, i) => (
             <motion.span
@@ -68,9 +73,7 @@ function AgendaVisual() {
           ))}
         </div>
 
-        {/* Grid + appointments */}
         <div className="relative flex-1">
-          {/* Horizontal grid lines */}
           {hours.map((_, i) => (
             <motion.div
               key={i}
@@ -82,7 +85,20 @@ function AgendaVisual() {
             />
           ))}
 
-          {/* Appointment blocks — positioned by slot index */}
+          {/* Current time indicator — slow drift */}
+          {inView && (
+            <motion.div
+              className="absolute left-0 right-0 flex items-center"
+              style={{ top: "18%" }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1, top: ["18%", "22%", "18%"] }}
+              transition={{ opacity: { delay: 0.8, duration: 0.3 }, top: { duration: 12, repeat: Infinity, ease: "easeInOut" } }}
+            >
+              <div className="h-1.5 w-1.5 rounded-full bg-red-400" />
+              <div className="h-px flex-1 bg-red-400/30" />
+            </motion.div>
+          )}
+
           {appointments.map((apt) => (
             <motion.div
               key={apt.name}
@@ -115,7 +131,6 @@ function ProntuarioVisual() {
   const ref = useRef<HTMLDivElement>(null)
   const inView = useInView(ref, { once: true, margin: "-60px" })
 
-  /* Simple tooth path (molar shape) */
   const toothPath = "M12 2C8 2 6 5 6 8c0 2 1 4 2 6 .5 1 1 3 1 5 0 1 .5 2 1.5 2h3c1 0 1.5-1 1.5-2 0-2 .5-4 1-5 1-2 2-4 2-6 0-3-2-6-6-6z"
 
   const timelineItems = [
@@ -126,24 +141,33 @@ function ProntuarioVisual() {
 
   return (
     <div ref={ref} className="relative h-full rounded-lg bg-white p-4">
-      {/* Tooth with drawing animation */}
       <div className="mb-3 flex items-center gap-3">
-        <motion.svg
-          viewBox="0 0 24 24"
-          className="h-10 w-10"
-          fill="none"
-          stroke="#8b5cf6"
-          strokeWidth={1.5}
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        >
-          <motion.path
-            d={toothPath}
-            initial={{ pathLength: 0, opacity: 0 }}
-            animate={inView ? { pathLength: 1, opacity: 1 } : {}}
-            transition={{ delay: 0.2, duration: 1.2, ease }}
-          />
-        </motion.svg>
+        <div className="relative">
+          <motion.svg
+            viewBox="0 0 24 24"
+            className="h-10 w-10"
+            fill="none"
+            stroke="#8b5cf6"
+            strokeWidth={1.5}
+            strokeLinecap="round"
+            strokeLinejoin="round"
+          >
+            <motion.path
+              d={toothPath}
+              initial={{ pathLength: 0, opacity: 0 }}
+              animate={inView ? { pathLength: 1, opacity: 1 } : {}}
+              transition={{ delay: 0.2, duration: 1.2, ease }}
+            />
+          </motion.svg>
+          {/* Breathing glow behind tooth */}
+          {inView && (
+            <motion.div
+              className="absolute inset-0 rounded-full bg-[#8b5cf6]/10 blur-md"
+              animate={{ scale: [0.8, 1.2, 0.8], opacity: [0.3, 0.6, 0.3] }}
+              transition={{ duration: 3, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
+        </div>
         <div>
           <motion.div
             className="h-2.5 w-20 rounded bg-neutral-200"
@@ -162,9 +186,8 @@ function ProntuarioVisual() {
         </div>
       </div>
 
-      {/* Mini timeline */}
       <div className="space-y-2">
-        {timelineItems.map((item) => (
+        {timelineItems.map((item, i) => (
           <motion.div
             key={item.label}
             className="flex items-center gap-2.5 rounded-md p-2"
@@ -173,9 +196,12 @@ function ProntuarioVisual() {
             animate={inView ? { opacity: 1, x: 0 } : {}}
             transition={{ delay: item.delay, duration: 0.4, ease }}
           >
-            <div
+            {/* Pulsing dot */}
+            <motion.div
               className="h-1.5 w-1.5 rounded-full"
               style={{ backgroundColor: item.color }}
+              animate={inView ? { scale: [1, 1.5, 1], opacity: [1, 0.6, 1] } : {}}
+              transition={{ duration: 2.5, repeat: Infinity, ease: "easeInOut", delay: 1.5 + i * 0.8 }}
             />
             <span className="text-[10px] text-neutral-600">{item.label}</span>
           </motion.div>
@@ -190,17 +216,16 @@ function FinanceiroVisual() {
   const inView = useInView(ref, { once: true, margin: "-60px" })
 
   const bars = [
-    { height: 45, color: "#10b981" },
-    { height: 65, color: "#10b981" },
-    { height: 35, color: "#ef4444" },
-    { height: 80, color: "#10b981" },
-    { height: 55, color: "#10b981" },
-    { height: 70, color: "#10b981" },
+    { height: 45, color: "#10b981", sway: 5 },
+    { height: 65, color: "#10b981", sway: 4 },
+    { height: 35, color: "#ef4444", sway: 6 },
+    { height: 80, color: "#10b981", sway: 3 },
+    { height: 55, color: "#10b981", sway: 5 },
+    { height: 70, color: "#10b981", sway: 4 },
   ]
 
   return (
     <div ref={ref} className="relative h-full rounded-lg bg-white p-4">
-      {/* Summary cards */}
       <div className="mb-3 grid grid-cols-2 gap-2">
         <motion.div
           className="rounded-md bg-emerald-50 p-2"
@@ -236,7 +261,6 @@ function FinanceiroVisual() {
         </motion.div>
       </div>
 
-      {/* Chart */}
       <div className="flex h-16 items-end gap-1.5 rounded-lg bg-neutral-50 p-2">
         {bars.map((bar, i) => (
           <motion.div
@@ -244,8 +268,19 @@ function FinanceiroVisual() {
             className="flex-1 rounded-t"
             style={{ backgroundColor: `${bar.color}25` }}
             initial={{ height: 0 }}
-            animate={inView ? { height: `${bar.height}%` } : {}}
-            transition={{ delay: 0.6 + i * 0.08, duration: 0.5, ease }}
+            animate={
+              inView
+                ? { height: [`${bar.height}%`, `${bar.height + bar.sway}%`, `${bar.height - bar.sway}%`, `${bar.height}%`] }
+                : {}
+            }
+            transition={{
+              height: {
+                delay: 0.6 + i * 0.08,
+                duration: 4 + i * 0.5,
+                repeat: Infinity,
+                ease: "easeInOut",
+              },
+            }}
           />
         ))}
       </div>
@@ -264,21 +299,29 @@ function WhatsAppVisual() {
 
   return (
     <div ref={ref} className="relative h-full rounded-lg bg-white p-4">
-      {/* WhatsApp-style header */}
       <motion.div
         className="mb-3 flex items-center gap-2 rounded-lg bg-[#22c55e]/10 p-2"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 0.2 }}
       >
-        <div className="h-6 w-6 rounded-full bg-[#22c55e]/20" />
+        <div className="relative">
+          <div className="h-6 w-6 rounded-full bg-[#22c55e]/20" />
+          {/* Online pulse */}
+          {inView && (
+            <motion.div
+              className="absolute -bottom-0.5 -right-0.5 h-2 w-2 rounded-full bg-[#22c55e]"
+              animate={{ scale: [1, 1.4, 1], opacity: [1, 0.5, 1] }}
+              transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+            />
+          )}
+        </div>
         <div>
           <div className="h-2 w-16 rounded bg-neutral-200" />
           <div className="mt-1 h-1.5 w-10 rounded bg-neutral-100" />
         </div>
       </motion.div>
 
-      {/* Messages */}
       <div className="space-y-2">
         {messages.map((msg) => (
           <motion.div
@@ -297,14 +340,18 @@ function WhatsAppVisual() {
         ))}
       </div>
 
-      {/* Status indicator */}
       <motion.div
         className="mt-3 flex items-center gap-1.5"
         initial={{ opacity: 0 }}
         animate={inView ? { opacity: 1 } : {}}
         transition={{ delay: 1.0 }}
       >
-        <div className="h-1.5 w-1.5 rounded-full bg-[#22c55e]" />
+        {/* Pulsing status dot */}
+        <motion.div
+          className="h-1.5 w-1.5 rounded-full bg-[#22c55e]"
+          animate={inView ? { scale: [1, 1.3, 1], opacity: [1, 0.5, 1] } : {}}
+          transition={{ duration: 2, repeat: Infinity, ease: "easeInOut", delay: 1.5 }}
+        />
         <span className="text-[9px] text-[#22c55e] font-medium">Confirmado automaticamente</span>
       </motion.div>
     </div>
@@ -397,7 +444,6 @@ function Feature({
 
 const HIGHLIGHTS = [
   { icon: ClipboardList, label: "Orcamentos", color: "#f59e0b" },
-  { icon: ReceiptText, label: "Recibos PDF", color: "#8b5cf6" },
 ]
 
 export function Features() {
@@ -458,10 +504,10 @@ export function Features() {
             icon={DollarSign}
             label="Financeiro"
             title="Controle real do dinheiro."
-            description="Receitas, despesas, parcelas e maquininhas de cartao. Recibos em PDF e relatorios por periodo."
+            description="Receitas, despesas, parcelas e maquininhas de cartao. Relatorios por periodo e controle completo."
             details={[
               "Receitas e despesas com categorias",
-              "Recibos em PDF automaticos",
+              "Controle de parcelas e maquininhas",
               "Relatorios de faturamento detalhados",
             ]}
             accentColor="#10b981"
@@ -485,7 +531,7 @@ export function Features() {
         </div>
 
         {/* Extra highlights */}
-        <RevealStagger className="mt-20 grid gap-4 sm:grid-cols-2">
+        <RevealStagger className="mt-20 grid gap-4 sm:grid-cols-1 max-w-md mx-auto">
           {HIGHLIGHTS.map((h) => (
             <RevealItem key={h.label}>
               <div className="flex items-center gap-4 rounded-xl border border-neutral-200 bg-white p-5 transition-all hover:shadow-md">
