@@ -40,7 +40,7 @@ export function Cta() {
             </h2>
             <p className="mt-4 max-w-md text-base text-neutral-400">
               14 dias gratis, sem cartao de credito. Configure em 5 minutos
-              e descubra como e ter tudo em um lugar.
+              e descubra como e ter seu consultorio no bolso.
             </p>
             <div className="relative mt-8 inline-flex">
               <div className="absolute -inset-2 rounded-xl bg-white/20 blur-xl" />

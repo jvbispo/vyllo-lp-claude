@@ -16,7 +16,7 @@ const jsonLd = {
   applicationCategory: "BusinessApplication",
   operatingSystem: "Web",
   description:
-    "Software de gestao para clinicas odontologicas. Agenda, prontuario, financeiro e confirmacoes automaticas em um so lugar.",
+    "Software de gestao para dentistas. Agenda, prontuario e financeiro no seu bolso. Leve seus pacientes e dados para qualquer consultorio.",
   offers: {
     "@type": "Offer",
     price: "0",

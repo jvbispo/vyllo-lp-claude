@@ -18,6 +18,7 @@ const ROWS: {
   { feature: "Financeiro completo", vyllo: true, codental: true, capim: true, do_: "partial" },
 { feature: "WhatsApp incluso", vyllo: true, codental: "R$0,07/msg", capim: true, do_: true },
   { feature: "Interface moderna", vyllo: true, codental: false, capim: "partial", do_: false },
+  { feature: "Seus dados, seu perfil", vyllo: true, codental: false, capim: false, do_: false },
   { feature: "A partir de", vyllo: "R$59/mes", codental: "R$79,90", capim: "R$99,90", do_: "R$55" },
 ]
 
@@ -56,7 +57,7 @@ export function Comparison() {
             Comparativo honesto
           </h2>
           <p className="mt-3 text-base text-neutral-500">
-            Voce decide. Colocamos lado a lado.
+            Feito para o dentista, nao para a clinica. Voce decide.
           </p>
         </Reveal>
 

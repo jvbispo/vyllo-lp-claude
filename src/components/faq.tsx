@@ -9,7 +9,7 @@ const FAQS = [
   {
     question: "Preciso instalar alguma coisa?",
     answer:
-      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Crie sua conta e comece a usar.",
+      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Tambem da pra instalar como app no celular, direto da tela inicial.",
   },
   {
     question: "O teste gratis tem limitacao?",
@@ -24,12 +24,12 @@ const FAQS = [
   {
     question: "Meus dados ficam seguros?",
     answer:
-      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus.",
+      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus — se mudar de consultorio, eles vao com voce.",
   },
   {
     question: "Posso usar em mais de um consultorio?",
     answer:
-      "Sim. Cadastre multiplos locais, cada um com procedimentos, precos e horarios proprios.",
+      "Sim. O Vyllo e seu, nao do consultorio. Cadastre os locais onde voce atende, cada um com procedimentos, precos e horarios proprios. Mude de clinica e leve tudo com voce.",
   },
   {
     question: "Como funciona o suporte?",

@@ -13,7 +13,7 @@ export function Footer() {
               <span className="text-lg font-semibold text-neutral-900">Vyllo</span>
             </div>
             <p className="mt-3 max-w-xs text-sm text-neutral-400">
-              Software de gestao para clinicas odontologicas.
+              Software de gestao para dentistas.
             </p>
           </div>
 

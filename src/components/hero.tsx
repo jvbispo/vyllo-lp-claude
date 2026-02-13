@@ -597,7 +597,7 @@ export function Hero() {
             className="inline-flex items-center gap-2 rounded-full border border-vyllo/15 bg-vyllo/5 px-3.5 py-1.5"
           >
             <span className="h-1.5 w-1.5 rounded-full bg-vyllo" />
-            <span className="text-xs font-medium text-vyllo">Software para clinicas odontologicas</span>
+            <span className="text-xs font-medium text-vyllo">Software para dentistas</span>
           </motion.div>
 
           <motion.h1
@@ -606,9 +606,9 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.05, ease }}
             className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
           >
-            Agenda, prontuario e financeiro
+            Sua agenda, prontuario e financeiro
             <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] bg-clip-text text-transparent">em um so lugar.</span>
+            <span className="bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] bg-clip-text text-transparent">onde voce for.</span>
           </motion.h1>
 
           <motion.p
@@ -617,8 +617,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.1, ease }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-500"
           >
-            Pensado para dentistas que querem atender, nao administrar.
-            Integrado, rapido e sem complexidade.
+            O sistema do dentista que quer atender, nao administrar.
+            Leve seus pacientes e dados para qualquer consultorio.
           </motion.p>
 
           <motion.div

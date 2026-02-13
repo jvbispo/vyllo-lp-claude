@@ -43,7 +43,7 @@ const INCLUDED = [
   "Anamnese personalizavel",
   "Financeiro completo",
   "Relatorios de faturamento",
-  "Multiplos locais",
+  "Varios locais de atendimento",
   "Suporte por WhatsApp",
   "Atualizacoes sem custo",
 ]
@@ -54,7 +54,7 @@ const FEATURES_WITH_ICONS: { label: string; icon: LucideIcon; desc: string }[] =
   { label: "Plano de tratamento", icon: ClipboardList, desc: "Itens, status e acompanhamento" },
   { label: "Orcamentos", icon: FileText, desc: "Integrados ao plano de tratamento" },
   { label: "Financeiro completo", icon: DollarSign, desc: "Receitas, despesas e relatorios" },
-  { label: "Multiplos locais", icon: MapPin, desc: "Gerencie varias clinicas" },
+  { label: "Varios locais de atendimento", icon: MapPin, desc: "Atenda em varios locais" },
   { label: "Relatorios", icon: BarChart3, desc: "Faturamento e metricas" },
   { label: "WhatsApp", icon: MessageCircle, desc: "Suporte direto e rapido" },
   { label: "Atualizacoes", icon: RefreshCw, desc: "Novas funcionalidades sem custo" },
@@ -391,7 +391,7 @@ function PricingB() {
                   <span className="text-sm font-bold text-white">V</span>
                 </div>
                 <h3 className="mt-3 text-xl font-semibold text-neutral-900">Profissional</h3>
-                <p className="text-sm text-neutral-400">Tudo que voce precisa para sua clinica</p>
+                <p className="text-sm text-neutral-400">Tudo que voce precisa</p>
 
                 <div className="mt-6 w-full max-w-xs">
                   <CycleSelector cycle={cycle} setCycle={setCycle} />

@@ -488,8 +488,8 @@ export function Features() {
           <Feature
             icon={FileText}
             label="Prontuario"
-            title="Historico completo de cada paciente."
-            description="Notas clinicas, odontograma interativo, plano de tratamento e anamnese. Timeline visual com tudo que aconteceu."
+            title="Seus pacientes, seus registros."
+            description="Notas clinicas, odontograma interativo, plano de tratamento e anamnese. Tudo salvo no seu perfil — mude de consultorio e leve tudo com voce."
             details={[
               "Odontograma interativo com timeline",
               "Plano de tratamento rastreavel",
@@ -503,8 +503,8 @@ export function Features() {
           <Feature
             icon={DollarSign}
             label="Financeiro"
-            title="Controle real do dinheiro."
-            description="Receitas, despesas, parcelas e maquininhas de cartao. Relatorios por periodo e controle completo."
+            title="Saiba exatamente quanto voce faturou."
+            description="Receitas, despesas, parcelas e maquininhas de cartao. Seu financeiro pessoal organizado por periodo, local e procedimento."
             details={[
               "Receitas e despesas com categorias",
               "Controle de parcelas e maquininhas",
@@ -517,8 +517,8 @@ export function Features() {
           <Feature
             icon={MessageCircle}
             label="WhatsApp"
-            title="Confirmacao automatica, menos faltas."
-            description="Lembrete D-1 por WhatsApp. Paciente confirma com um toque. Menos cadeiras vazias, mais previsibilidade."
+            title="Seus pacientes confirmam direto com voce."
+            description="Lembrete D-1 por WhatsApp no seu nome. Paciente confirma com um toque. Menos faltas, mais previsibilidade na sua agenda."
             details={[
               "Envio automatico um dia antes",
               "Confirmacao com um clique",
