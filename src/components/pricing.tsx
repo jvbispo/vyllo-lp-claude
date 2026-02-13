@@ -81,7 +81,7 @@ export function Pricing() {
                       <button
                         key={c.id}
                         onClick={() => setCycle(c.id)}
-                        className="relative flex-1 rounded-md py-2 text-sm transition-colors"
+                        className="relative flex-1 rounded-md px-3 py-2 text-sm transition-colors"
                         style={{ color: cycle === c.id ? "#0a0a0a" : "#737373" }}
                       >
                         {cycle === c.id && (
