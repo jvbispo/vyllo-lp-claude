@@ -541,16 +541,130 @@ function PricingC() {
 }
 
 /* ══════════════════════════════════════════════════════
+   OPTION D — Light mesh gradient (blue/cyan/purple blobs)
+   ══════════════════════════════════════════════════════ */
+
+function PricingD() {
+  const [cycle, setCycle] = useState<Cycle>("semiannual")
+  const selected = CYCLES.find((c) => c.id === cycle)!
+
+  return (
+    <section id="precos" className="relative overflow-hidden py-24 md:py-36" style={{ background: "#f7f9ff" }}>
+      {/* Mesh gradient blobs */}
+      <div className="pointer-events-none absolute inset-0">
+        <div className="absolute -top-[10%] left-[5%] h-[600px] w-[600px] rounded-full opacity-60" style={{
+          background: "radial-gradient(circle, rgba(96,165,250,0.25) 0%, transparent 55%)",
+          filter: "blur(60px)",
+        }} />
+        <div className="absolute top-[20%] right-[0%] h-[500px] w-[500px] rounded-full opacity-50" style={{
+          background: "radial-gradient(circle, rgba(139,92,246,0.18) 0%, transparent 55%)",
+          filter: "blur(60px)",
+        }} />
+        <div className="absolute -bottom-[5%] left-[30%] h-[450px] w-[550px] rounded-full opacity-50" style={{
+          background: "radial-gradient(circle, rgba(34,211,238,0.18) 0%, transparent 55%)",
+          filter: "blur(60px)",
+        }} />
+        {/* Subtle center glow */}
+        <div className="absolute top-1/2 left-1/2 h-[400px] w-[700px] -translate-x-1/2 -translate-y-1/2 rounded-full opacity-40" style={{
+          background: "radial-gradient(ellipse, rgba(0,102,255,0.12) 0%, transparent 60%)",
+          filter: "blur(40px)",
+        }} />
+      </div>
+
+      {/* Top/bottom soft dividers */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+
+      <div className="relative mx-auto max-w-5xl px-6">
+        <Reveal>
+          <div className="text-center">
+            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+              Um plano. Tudo incluso.
+            </h2>
+            <p className="mt-3 text-base text-neutral-500">
+              Comece gratis por 14 dias. Sem cartao de credito.
+            </p>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.1}>
+          <div className="mx-auto mt-14 max-w-3xl">
+            <div className="relative rounded-xl border border-white/60 bg-white/70 p-8 shadow-[0_8px_40px_rgba(0,102,255,0.10),0_2px_8px_rgba(0,0,0,0.04)] backdrop-blur-sm md:p-10">
+              <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/30 to-transparent" />
+
+              <div className="grid gap-10 md:grid-cols-[1fr_1px_1fr]">
+                {/* Left */}
+                <div>
+                  <div className="flex items-center justify-between">
+                    <div>
+                      <h3 className="text-lg font-semibold text-neutral-900">Profissional</h3>
+                      <p className="text-sm text-neutral-400">Tudo que voce precisa</p>
+                    </div>
+                    <div className="flex h-8 w-8 items-center justify-center rounded-md bg-vyllo shadow-md shadow-vyllo/20">
+                      <span className="text-xs font-bold text-white">V</span>
+                    </div>
+                  </div>
+
+                  <div className="mt-6">
+                    <CycleSelector cycle={cycle} setCycle={setCycle} />
+                  </div>
+
+                  <div className="mt-8">
+                    <AnimatedPrice selected={selected} />
+                  </div>
+
+                  <a
+                    href={`${APP_URL}/auth/registro`}
+                    className="group mt-8 flex w-full items-center justify-center gap-2 rounded-lg bg-vyllo py-3 text-sm font-medium text-white shadow-md shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-lg hover:shadow-vyllo/25 active:scale-[0.98]"
+                  >
+                    Comecar teste gratis
+                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+                  </a>
+                  <p className="mt-3 text-center text-xs text-neutral-400">
+                    14 dias gratis. Sem cartao. Cancele quando quiser.
+                  </p>
+                </div>
+
+                {/* Divider */}
+                <div className="hidden bg-neutral-200/50 md:block" />
+
+                {/* Right */}
+                <div className="flex flex-col justify-center border-t border-neutral-200/50 pt-6 md:border-t-0 md:pt-0">
+                  <p className="mb-4 text-sm font-medium text-neutral-900">Incluso no plano:</p>
+                  <ul className="grid gap-2.5 sm:grid-cols-2 md:grid-cols-1 lg:gap-3">
+                    {INCLUDED.map((item) => (
+                      <li key={item} className="flex items-center gap-3 text-sm text-neutral-600">
+                        <Check className="h-4 w-4 shrink-0 text-vyllo" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </Reveal>
+
+        <Reveal delay={0.2}>
+          <Stats />
+        </Reveal>
+      </div>
+    </section>
+  )
+}
+
+/* ══════════════════════════════════════════════════════
    MAIN — Version switcher
    ══════════════════════════════════════════════════════ */
 
-type Version = "current" | "A" | "B" | "C"
+type Version = "current" | "A" | "B" | "C" | "D"
 
 const VERSIONS: { id: Version; label: string; desc: string }[] = [
   { id: "current", label: "Atual", desc: "Card branco" },
   { id: "A", label: "A", desc: "Dark glass" },
   { id: "B", label: "B", desc: "Bento grid" },
   { id: "C", label: "C", desc: "Statement" },
+  { id: "D", label: "D", desc: "Gradient mesh claro" },
 ]
 
 export function Pricing() {
@@ -583,6 +697,7 @@ export function Pricing() {
       {version === "A" && <PricingA />}
       {version === "B" && <PricingB />}
       {version === "C" && <PricingC />}
+      {version === "D" && <PricingD />}
     </>
   )
 }
