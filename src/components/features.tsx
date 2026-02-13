@@ -22,14 +22,15 @@ function AgendaVisual() {
   const inView = useInView(ref, { once: true, margin: "-60px" })
 
   const hours = ["08:00", "09:00", "10:00", "11:00", "12:00"]
+  /* Each slot = 25% of the grid height (4 intervals between 5 hours) */
   const appointments = [
-    { top: "0%", height: "28%", color: "#0066ff", name: "Maria S.", delay: 0.3 },
-    { top: "32%", height: "20%", color: "#8b5cf6", name: "Carlos R.", delay: 0.45 },
-    { top: "56%", height: "24%", color: "#10b981", name: "Ana P.", delay: 0.6 },
+    { slot: 0, spans: 1.5, color: "#0066ff", name: "Maria S.", proc: "Limpeza", delay: 0.3 },
+    { slot: 1.5, spans: 1, color: "#8b5cf6", name: "Carlos R.", proc: "Restauracao", delay: 0.45 },
+    { slot: 3, spans: 1, color: "#10b981", name: "Ana P.", proc: "Avaliacao", delay: 0.6 },
   ]
 
   return (
-    <div ref={ref} className="relative h-full rounded-lg bg-white p-4">
+    <div ref={ref} className="flex h-full flex-col rounded-lg bg-white p-4">
       {/* Header */}
       <motion.div
         className="mb-3 flex items-center justify-between"
@@ -50,13 +51,14 @@ function AgendaVisual() {
         </div>
       </motion.div>
 
-      {/* Time grid */}
-      <div className="relative flex flex-1 gap-2">
-        {/* Hours column */}
+      {/* Time grid — fills remaining height */}
+      <div className="relative flex min-h-0 flex-1 gap-3">
+        {/* Hours column — aligned to grid lines */}
         <div className="flex flex-col justify-between text-[9px] text-neutral-300">
           {hours.map((h, i) => (
             <motion.span
               key={h}
+              className="leading-none"
               initial={{ opacity: 0 }}
               animate={inView ? { opacity: 1 } : {}}
               transition={{ delay: 0.2 + i * 0.05 }}
@@ -68,7 +70,7 @@ function AgendaVisual() {
 
         {/* Grid + appointments */}
         <div className="relative flex-1">
-          {/* Grid lines */}
+          {/* Horizontal grid lines */}
           {hours.map((_, i) => (
             <motion.div
               key={i}
@@ -80,23 +82,26 @@ function AgendaVisual() {
             />
           ))}
 
-          {/* Appointment blocks */}
+          {/* Appointment blocks — positioned by slot index */}
           {appointments.map((apt) => (
             <motion.div
               key={apt.name}
-              className="absolute left-1 right-1 rounded-md px-2 py-1"
+              className="absolute left-1 right-1 flex flex-col justify-center rounded-md px-2.5"
               style={{
-                top: apt.top,
-                height: apt.height,
+                top: `${(apt.slot / (hours.length - 1)) * 100}%`,
+                height: `${(apt.spans / (hours.length - 1)) * 100}%`,
                 backgroundColor: `${apt.color}12`,
-                borderLeft: `2px solid ${apt.color}`,
+                borderLeft: `2.5px solid ${apt.color}`,
               }}
               initial={{ opacity: 0, scaleY: 0 }}
               animate={inView ? { opacity: 1, scaleY: 1 } : {}}
               transition={{ delay: apt.delay, duration: 0.4, ease }}
             >
-              <span className="text-[10px] font-medium" style={{ color: apt.color }}>
+              <span className="text-[10px] font-medium leading-tight" style={{ color: apt.color }}>
                 {apt.name}
+              </span>
+              <span className="text-[8px] leading-tight text-neutral-400">
+                {apt.proc}
               </span>
             </motion.div>
           ))}
