@@ -84,3 +84,15 @@ body {
   0%, 100% { transform: translateX(-100%); }
   50% { transform: translateX(400%); }
 }
+
+/* Agenda appointment positioning — responsive row height */
+.agenda-apt {
+  --row-h: 32px;
+  top: calc(var(--apt-start) * var(--row-h));
+  height: calc(var(--apt-dur) * var(--row-h) - 2px);
+}
+@media (min-width: 768px) {
+  .agenda-apt {
+    --row-h: 40px;
+  }
+}
