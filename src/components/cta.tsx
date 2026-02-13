@@ -35,6 +35,9 @@ export function Cta() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="flex flex-col items-center text-center">
+            <p className="text-sm text-neutral-500 mb-4">
+              Chega de planilha, papel e sistema da clinica.
+            </p>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               Comece a usar o Vyllo hoje.
             </h2>

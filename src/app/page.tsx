@@ -4,6 +4,7 @@ import { Workflow } from "@/components/workflow"
 import { Features } from "@/components/features"
 import { Testimonials } from "@/components/testimonials"
 import { Comparison } from "@/components/comparison"
+import { ForYou } from "@/components/for-you"
 import { Pricing } from "@/components/pricing"
 import { Faq } from "@/components/faq"
 import { Cta } from "@/components/cta"
@@ -44,6 +45,7 @@ export default function Home() {
         <Features />
         <Testimonials />
         <Comparison />
+        <ForYou />
         <Pricing />
         <Faq />
         <Cta />

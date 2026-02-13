@@ -165,6 +165,10 @@ function PricingCurrent() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="text-center">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              Preco de lancamento
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               Um plano. Tudo incluso.
             </h2>
@@ -271,6 +275,10 @@ function PricingA() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="text-center">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-white/10 px-3 py-1 text-xs font-semibold text-amber-300 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              Preco de lancamento
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
               Um plano. Tudo incluso.
             </h2>
@@ -373,6 +381,10 @@ function PricingB() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="text-center">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              Preco de lancamento
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               Um plano. Tudo incluso.
             </h2>
@@ -466,6 +478,10 @@ function PricingC() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="flex flex-col items-center text-center">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              Preco de lancamento
+            </div>
             <p className="text-sm font-medium text-vyllo">Plano Profissional</p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl">
               Um plano. Tudo incluso.
@@ -578,6 +594,10 @@ function PricingD() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="text-center">
+            <div className="inline-flex items-center gap-1.5 rounded-full bg-amber-50 px-3 py-1 text-xs font-semibold text-amber-700 mb-4">
+              <span className="h-1.5 w-1.5 rounded-full bg-amber-400" />
+              Preco de lancamento
+            </div>
             <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
               Um plano. Tudo incluso.
             </h2>

@@ -600,11 +600,20 @@ export function Hero() {
             <span className="text-xs font-medium text-vyllo">Software para dentistas</span>
           </motion.div>
 
+          <motion.p
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.03, ease }}
+            className="mt-6 max-w-xl text-base leading-relaxed text-neutral-400"
+          >
+            Seus dados espalhados em 3 sistemas, papel e planilha? Agora nao mais.
+          </motion.p>
+
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.05, ease }}
-            className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
+            transition={{ duration: 0.6, delay: 0.07, ease }}
+            className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
           >
             Sua agenda, prontuario e financeiro
             <br className="hidden sm:block" />
@@ -614,7 +623,7 @@ export function Hero() {
           <motion.p
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.1, ease }}
+            transition={{ duration: 0.6, delay: 0.12, ease }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-500"
           >
             O sistema do dentista que quer atender, nao administrar.
@@ -624,7 +633,7 @@ export function Hero() {
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.15, ease }}
+            transition={{ duration: 0.6, delay: 0.17, ease }}
             className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
           >
             <div className="relative inline-flex">

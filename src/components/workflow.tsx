@@ -16,25 +16,25 @@ const STEPS: {
   {
     icon: Calendar,
     label: "Agende",
-    description: "Paciente marca ou voce encaixa na agenda.",
+    description: "Em qualquer dos seus consultorios. Dois toques.",
     color: "#60a5fa",
   },
   {
     icon: Stethoscope,
     label: "Atenda",
-    description: "Prontuario aberto. Registre em tempo real.",
+    description: "Prontuario ja aberto. Registre durante o atendimento.",
     color: "#a78bfa",
   },
   {
     icon: FileText,
     label: "Registre",
-    description: "Plano, orcamento e notas em um clique.",
+    description: "Plano, orcamento e notas. Tudo salvo no seu perfil.",
     color: "#34d399",
   },
   {
     icon: DollarSign,
     label: "Cobre",
-    description: "Lancamento automatico. Financeiro na hora.",
+    description: "Financeiro atualizado na hora. Sem planilha.",
     color: "#fbbf24",
   },
 ]

@@ -369,6 +369,7 @@ function Feature({
   reverse,
   accentColor,
   visual,
+  badge,
 }: {
   icon: LucideIcon
   label: string
@@ -378,6 +379,7 @@ function Feature({
   reverse?: boolean
   accentColor: string
   visual: ReactNode
+  badge?: string
 }) {
   const textBlock = (
     <Reveal>
@@ -387,9 +389,16 @@ function Feature({
       >
         <Icon className="h-5 w-5" style={{ color: accentColor }} />
       </div>
-      <p className="mt-4 text-sm font-medium" style={{ color: accentColor }}>
-        {label}
-      </p>
+      <div className="mt-4 flex items-center gap-2">
+        <p className="text-sm font-medium" style={{ color: accentColor }}>
+          {label}
+        </p>
+        {badge && (
+          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+            {badge}
+          </span>
+        )}
+      </div>
       <h3 className="mt-2 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
         {title}
       </h3>
@@ -477,9 +486,9 @@ export function Features() {
             title="Agenda visual, agendamento rapido."
             description="Visualize a semana inteira, bloqueie horarios e agende com procedimentos pre-configurados. Tudo em dois cliques."
             details={[
-              "Visualizacao por dia e semana",
-              "Bloqueio de horarios e intervalos",
-              "Procedimentos e duracoes pre-configurados",
+              "Veja seu dia e semana de relance",
+              "Bloqueie ferias e intervalos sem complicacao",
+              "Procedimentos pre-configurados — agende sem digitar",
             ]}
             accentColor="#0066ff"
             visual={<AgendaVisual />}
@@ -491,9 +500,9 @@ export function Features() {
             title="Seus pacientes, seus registros."
             description="Notas clinicas, odontograma interativo, plano de tratamento e anamnese. Tudo salvo no seu perfil — mude de consultorio e leve tudo com voce."
             details={[
-              "Odontograma interativo com timeline",
-              "Plano de tratamento rastreavel",
-              "Anamnese com templates personalizaveis",
+              "Encontre qualquer registro em segundos",
+              "Nunca perca de vista o que falta fazer no tratamento",
+              "Anamnese pronta — so personalizar e aplicar",
             ]}
             reverse
             accentColor="#8b5cf6"
@@ -506,9 +515,9 @@ export function Features() {
             title="Saiba exatamente quanto voce faturou."
             description="Receitas, despesas, parcelas e maquininhas de cartao. Seu financeiro pessoal organizado por periodo, local e procedimento."
             details={[
-              "Receitas e despesas com categorias",
-              "Controle de parcelas e maquininhas",
-              "Relatorios de faturamento detalhados",
+              "No fim do mes, saiba exatamente quanto sobrou",
+              "Parcelas e maquininhas com calculo de taxa automatico",
+              "Relatorios por periodo — sem precisar de planilha",
             ]}
             accentColor="#10b981"
             visual={<FinanceiroVisual />}
@@ -517,12 +526,13 @@ export function Features() {
           <Feature
             icon={MessageCircle}
             label="WhatsApp"
+            badge="Em breve"
             title="Seus pacientes confirmam direto com voce."
             description="Lembrete D-1 por WhatsApp no seu nome. Paciente confirma com um toque. Menos faltas, mais previsibilidade na sua agenda."
             details={[
-              "Envio automatico um dia antes",
-              "Confirmacao com um clique",
-              "Integrado com a agenda",
+              "Reduza faltas sem levantar o dedo",
+              "Paciente confirma com um toque",
+              "Integrado com sua agenda — tudo automatico",
             ]}
             reverse
             accentColor="#22c55e"

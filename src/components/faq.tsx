@@ -9,12 +9,22 @@ const FAQS = [
   {
     question: "Preciso instalar alguma coisa?",
     answer:
-      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Tambem da pra instalar como app no celular, direto da tela inicial.",
+      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Tambem da pra instalar como app no celular, direto da tela inicial, sem precisar de loja.",
+  },
+  {
+    question: "Funciona bem no celular?",
+    answer:
+      "Sim. A interface foi pensada pra mobile desde o inicio. Da pra agendar, registrar nota clinica e consultar prontuario direto do celular, entre um paciente e outro.",
   },
   {
     question: "O teste gratis tem limitacao?",
     answer:
       "Nao. Nos 14 dias voce tem acesso a tudo. Sem restricao e sem cartao de credito.",
+  },
+  {
+    question: "E se eu mudar de consultorio?",
+    answer:
+      "Seus dados vao com voce. O Vyllo e vinculado a voce, nao ao consultorio. Mude de clinica, adicione um novo local e continue de onde parou — pacientes, prontuarios e financeiro intactos.",
   },
   {
     question: "Consigo importar meus pacientes?",
@@ -24,17 +34,22 @@ const FAQS = [
   {
     question: "Meus dados ficam seguros?",
     answer:
-      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus — se mudar de consultorio, eles vao com voce.",
+      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus.",
   },
   {
     question: "Posso usar em mais de um consultorio?",
     answer:
-      "Sim. O Vyllo e seu, nao do consultorio. Cadastre os locais onde voce atende, cada um com procedimentos, precos e horarios proprios. Mude de clinica e leve tudo com voce.",
+      "Sim. Cadastre os locais onde voce atende, cada um com procedimentos, precos e horarios proprios. Agenda e financeiro separados por local, prontuario unificado.",
+  },
+  {
+    question: "Da pra usar durante o atendimento?",
+    answer:
+      "Sim. O prontuario abre rapido, a nota clinica salva automaticamente, e o odontograma funciona por toque. Foi pensado pra voce usar na cadeira, nao so no escritorio.",
   },
   {
     question: "Como funciona o suporte?",
     answer:
-      "Direto por WhatsApp com resposta rapida. Equipe pequena e atenciosa. Sem robo.",
+      "Direto por WhatsApp com resposta rapida. Equipe pequena e atenciosa. Sem robo, sem fila.",
   },
   {
     question: "Posso cancelar a qualquer momento?",
@@ -44,7 +59,7 @@ const FAQS = [
   {
     question: "Vao ter novas funcionalidades?",
     answer:
-      "Sim. Lancamos atualizacoes frequentes baseadas no feedback dos dentistas. Confirmacao por WhatsApp e a proxima.",
+      "Sim. Lancamos atualizacoes frequentes baseadas no feedback dos dentistas. Confirmacao automatica por WhatsApp e a proxima.",
   },
 ]
 
