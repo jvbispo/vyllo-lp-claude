@@ -9,9 +9,34 @@ import { Faq } from "@/components/faq"
 import { Cta } from "@/components/cta"
 import { Footer } from "@/components/footer"
 
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "SoftwareApplication",
+  name: "Vyllo",
+  applicationCategory: "BusinessApplication",
+  operatingSystem: "Web",
+  description:
+    "Software de gestao para clinicas odontologicas. Agenda, prontuario, financeiro e confirmacoes automaticas em um so lugar.",
+  offers: {
+    "@type": "Offer",
+    price: "0",
+    priceCurrency: "BRL",
+    description: "14 dias gratis, sem cartao de credito",
+  },
+  aggregateRating: {
+    "@type": "AggregateRating",
+    ratingValue: "5",
+    ratingCount: "3",
+  },
+}
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <Navbar />
       <main>
         <Hero />

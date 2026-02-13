@@ -12,6 +12,10 @@ export const metadata: Metadata = {
   title: "Vyllo — Software para Clínicas Odontológicas",
   description:
     "Agenda, prontuário, financeiro e confirmações automáticas em um só lugar. Pensado para dentistas que querem trabalhar, não administrar. 14 dias grátis.",
+  metadataBase: new URL("https://vyllo.com.br"),
+  alternates: {
+    canonical: "/",
+  },
   keywords: [
     "software odontológico",
     "gestão de clínica",
@@ -21,6 +25,9 @@ export const metadata: Metadata = {
     "odontograma",
     "plano de tratamento",
     "financeiro clínica",
+    "software para dentista",
+    "gestão odontológica",
+    "clínica odontológica",
   ],
   openGraph: {
     title: "Vyllo — Sua clínica, tudo em um lugar",
@@ -29,6 +36,21 @@ export const metadata: Metadata = {
     type: "website",
     locale: "pt_BR",
     siteName: "Vyllo",
+    url: "https://vyllo.com.br",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Vyllo — Software para Clínicas Odontológicas",
+    description:
+      "Agenda, prontuário e financeiro em um só lugar. 14 dias grátis.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+    },
   },
 }
 
