@@ -1,3 +1,5 @@
+import Image from "next/image"
+
 const WHATSAPP_URL = "https://wa.me/5500000000000"
 
 export function Footer() {
@@ -6,12 +8,9 @@ export function Footer() {
       <div className="mx-auto max-w-5xl px-6">
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
-            <div className="flex items-center gap-2.5">
-              <div className="flex h-7 w-7 items-center justify-center rounded-md bg-vyllo">
-                <span className="text-xs font-bold text-white">V</span>
-              </div>
-              <span className="text-lg font-semibold text-neutral-900">Vyllo</span>
-            </div>
+            <a href="#" className="flex items-center">
+              <Image src="/vyllo-logo.svg" alt="Vyllo" width={400} height={400} className="h-8 w-8 scale-[2.5] origin-left" />
+            </a>
             <p className="mt-3 max-w-xs text-sm text-neutral-400">
               Software de gestao para dentistas.
             </p>
