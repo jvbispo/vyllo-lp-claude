@@ -1,6 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import Image from "next/image"
 import { cn } from "@/lib/cn"
 import { Menu, X } from "lucide-react"
 
@@ -10,6 +11,8 @@ const NAV_LINKS = [
   { href: "#precos", label: "Planos" },
   { href: "#faq", label: "FAQ" },
 ]
+
+const CALC_URL = "https://calculadora.vyllo.com.br"
 
 const APP_URL = "https://app.vyllo.com.br"
 
@@ -33,11 +36,8 @@ export function Navbar() {
       )}
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
-        <a href="#" className="flex items-center gap-2.5">
-          <div className="flex h-7 w-7 items-center justify-center rounded-md bg-vyllo">
-            <span className="text-xs font-bold text-white">V</span>
-          </div>
-          <span className="text-lg font-semibold text-neutral-900">Vyllo</span>
+        <a href="#" className="flex items-center">
+          <Image src="/vyllo-logo.svg" alt="Vyllo" width={400} height={400} className="h-10 w-10 scale-[2.5] origin-left" />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">
@@ -54,16 +54,22 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           <a
-            href={`${APP_URL}/auth/login`}
+            href={CALC_URL}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
-            Entrar
+            Calcule seu Lucro Real →
           </a>
           <a
             href={`${APP_URL}/auth/registro`}
-            className="rounded-lg bg-neutral-900 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-neutral-800"
+            className="rounded-lg bg-vyllo px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0052cc]"
           >
-            Teste gratis
+            Testar grátis 15 dias
+          </a>
+          <a
+            href={`${APP_URL}/auth/login`}
+            className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+          >
+            Login
           </a>
         </div>
 
@@ -91,16 +97,25 @@ export function Navbar() {
             ))}
             <hr className="border-neutral-100" />
             <a
-              href={`${APP_URL}/auth/login`}
+              href={CALC_URL}
               className="text-base text-neutral-500"
+              onClick={() => setMobileOpen(false)}
             >
-              Entrar
+              Calcule seu Lucro Real →
             </a>
             <a
               href={`${APP_URL}/auth/registro`}
-              className="rounded-lg bg-neutral-900 px-4 py-3 text-center text-base font-medium text-white"
+              className="rounded-lg bg-vyllo px-4 py-3 text-center text-base font-medium text-white"
+              onClick={() => setMobileOpen(false)}
             >
-              Teste gratis
+              Testar grátis 15 dias
+            </a>
+            <a
+              href={`${APP_URL}/auth/login`}
+              className="text-base text-neutral-500"
+              onClick={() => setMobileOpen(false)}
+            >
+              Login
             </a>
           </div>
         </div>

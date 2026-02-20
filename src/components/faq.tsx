@@ -4,49 +4,7 @@ import { useState } from "react"
 import { motion, AnimatePresence } from "framer-motion"
 import { Reveal } from "./motion"
 import { ChevronDown } from "lucide-react"
-
-const FAQS = [
-  {
-    question: "Preciso instalar alguma coisa?",
-    answer:
-      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Crie sua conta e comece a usar.",
-  },
-  {
-    question: "O teste gratis tem limitacao?",
-    answer:
-      "Nao. Nos 14 dias voce tem acesso a tudo. Sem restricao e sem cartao de credito.",
-  },
-  {
-    question: "Consigo importar meus pacientes?",
-    answer:
-      "No momento o cadastro e manual, mas rapido. Importacao via planilha esta no roadmap.",
-  },
-  {
-    question: "Meus dados ficam seguros?",
-    answer:
-      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus.",
-  },
-  {
-    question: "Posso usar em mais de um consultorio?",
-    answer:
-      "Sim. Cadastre multiplos locais, cada um com procedimentos, precos e horarios proprios.",
-  },
-  {
-    question: "Como funciona o suporte?",
-    answer:
-      "Direto por WhatsApp com resposta rapida. Equipe pequena e atenciosa. Sem robo.",
-  },
-  {
-    question: "Posso cancelar a qualquer momento?",
-    answer:
-      "Sim, sem multa. Voce mantem o acesso ate o fim do periodo pago.",
-  },
-  {
-    question: "Vao ter novas funcionalidades?",
-    answer:
-      "Sim. Lancamos atualizacoes frequentes baseadas no feedback dos dentistas. Confirmacao por WhatsApp e a proxima.",
-  },
-]
+import { FAQS } from "@/data/faq"
 
 function FaqItem({
   question,
@@ -104,7 +62,7 @@ export function Faq() {
       <div className="mx-auto max-w-2xl px-6">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            Perguntas frequentes
+            Antes de testar, você provavelmente quer saber:
           </h2>
         </Reveal>
 

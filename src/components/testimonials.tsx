@@ -1,67 +1,111 @@
+import Image from "next/image"
 import { RevealStagger, RevealItem, Reveal } from "./motion"
 
 const TESTIMONIALS = [
   {
-    name: "Dra. Camila R.",
-    role: "Ortodontista — Belo Horizonte",
-    text: "Finalmente um sistema que nao parece ter sido feito nos anos 2000. A interface e limpa, rapida e faz sentido para o dia a dia.",
-    accent: "#0066ff",
+    name: "Dra. Larissa Luduvice",
+    role: "Periodontista",
+    text: "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro. O suporte é de fácil acesso. Só agradecer à Vyllo 🫶🏻",
+    accent: "#60a5fa",
+    image: "/dra-larissa-luduvice.jpg",
   },
   {
-    name: "Dr. Lucas M.",
-    role: "Clinico Geral — Sao Paulo",
-    text: "O prontuario com timeline mudou minha rotina. Tenho tudo do paciente em um lugar so, sem ficar alternando entre apps.",
-    accent: "#8b5cf6",
+    name: "Dr. Luca Albuquerque",
+    role: "Clínico-Geral",
+    text: "É você bater o olho e ver como está o consultório. Não dá erro, não tem fórmula, é um facilitador que cumpre muito mais do que promete.",
+    accent: "#a78bfa",
+    image: "/dr-luca-albuquerque.jpg",
   },
   {
-    name: "Dra. Patricia S.",
-    role: "Endodontista — Curitiba",
-    text: "Mandei mensagem no WhatsApp e me responderam em minutos. Isso faz toda a diferenca quando voce esta no meio de um atendimento.",
-    accent: "#10b981",
+    name: "Dra. Victoria Santana",
+    role: "Cirurgiã-Dentista",
+    text: "O app facilitou muito o meu dia a dia. Gestão mais organizada, atendimento mais ágil e sobra mais tempo para focar nos pacientes.",
+    accent: "#34d399",
+    image: "/dra-victoria-santana.jpg",
+  },
+  {
+    name: "Dr. Guilherme Tavares",
+    role: "Endodontista",
+    text: "É incrível encontrar uma ferramenta que realmente atende às demandas do dia a dia de um consultório.",
+    accent: "#fbbf24",
+    image: "/dr-guilherme-tavares-new.jpg",
+    imageScale: 1.55,
   },
 ]
 
 export function Testimonials() {
   return (
-    <section className="relative overflow-hidden border-y border-neutral-200/60 bg-white py-24 md:py-32">
-      {/* Warm gradient background */}
-      <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(ellipse_80%_50%_at_50%_0%,rgba(0,102,255,0.06)_0%,transparent_60%)]" />
-      <div className="pointer-events-none absolute bottom-0 right-0 h-[400px] w-[400px] rounded-full bg-[radial-gradient(circle,rgba(139,92,246,0.05)_0%,transparent_60%)] blur-3xl" />
+    <section className="relative overflow-hidden bg-[#0a1628] py-24 md:py-32">
+      {/* Grid lines */}
+      <div
+        className="pointer-events-none absolute inset-0 grid-accent"
+        style={{
+          maskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, #000 20%, transparent 80%)",
+          WebkitMaskImage: "radial-gradient(ellipse 70% 60% at 50% 50%, #000 20%, transparent 80%)",
+        }}
+      />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      {/* Mesh gradients */}
+      <div
+        className="pointer-events-none absolute inset-0"
+        style={{
+          background: `
+            radial-gradient(ellipse 50% 40% at 30% 0%, rgba(0,102,255,0.12) 0%, transparent 70%),
+            radial-gradient(ellipse 40% 40% at 80% 100%, rgba(139,92,246,0.08) 0%, transparent 70%)
+          `,
+        }}
+      />
+
+      {/* Gradient dividers */}
+      <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
+      <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
+
+      <div className="relative mx-auto max-w-6xl px-6">
         <Reveal>
-          <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            O que dentistas dizem
+          <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
+            Quem usa, não volta pra planilha, papel ou{" "}
+            <span className="relative inline-block">
+              <span style={{ animation: "strikethrough-text 5s ease-in-out infinite" }}>
+                sistema complicado
+              </span>
+              <span
+                className="pointer-events-none absolute left-0 h-[2px] w-full origin-left rounded-full bg-red-400/80"
+                style={{ top: "calc(50% - 1px)", transform: "scaleX(0)", animation: "strikethrough-line 5s ease-in-out infinite" }}
+                aria-hidden="true"
+              />
+            </span>
           </h2>
-          <p className="mt-3 text-base text-neutral-500">
-            Feedback real de quem usa o Vyllo no consultorio.
-          </p>
         </Reveal>
 
-        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-3">
+        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
           {TESTIMONIALS.map((t) => (
             <RevealItem key={t.name}>
-              <figure className="relative flex h-full flex-col justify-between rounded-xl border border-neutral-200/60 bg-white p-6 shadow-[0_4px_20px_rgba(0,102,255,0.04),0_1px_3px_rgba(0,0,0,0.03)] transition-all hover:border-neutral-200 hover:shadow-[0_8px_32px_rgba(0,102,255,0.08),0_2px_6px_rgba(0,0,0,0.05)]">
+              <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07] md:p-8">
                 {/* Accent line top */}
                 <div
-                  className="absolute top-0 left-6 right-6 h-px"
-                  style={{ background: `linear-gradient(90deg, ${t.accent}30, transparent)` }}
+                  className="absolute top-0 left-6 right-6 h-px md:left-8 md:right-8"
+                  style={{ background: `linear-gradient(90deg, ${t.accent}40, transparent)` }}
                 />
 
-                <blockquote className="text-base leading-relaxed text-neutral-600">
+                <blockquote className="text-base leading-relaxed text-white/70 md:text-lg md:leading-relaxed">
                   &ldquo;{t.text}&rdquo;
                 </blockquote>
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-neutral-50 pt-4">
-                  <div
-                    className="flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold text-white"
-                    style={{ backgroundColor: t.accent }}
-                  >
-                    {t.name.charAt(0)}
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4 md:mt-8 md:gap-4 md:pt-5">
+                  <div className={`relative shrink-0 overflow-hidden rounded-full ring-2 ring-white/10 ${(t as { imageScale?: number }).imageScale ? "h-12 w-12 md:h-14 md:w-14" : "h-10 w-10 md:h-12 md:w-12"}`}>
+                    <Image
+                      src={t.image}
+                      alt=""
+                      width={56}
+                      height={56}
+                      className="object-cover"
+                      style={(t as { imageScale?: number }).imageScale != null ? { transform: `scale(${(t as { imageScale: number }).imageScale})` } : undefined}
+                      sizes="(min-width: 768px) 56px, 48px"
+                    />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-neutral-900">{t.name}</p>
-                    <p className="text-xs text-neutral-400">{t.role}</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-white md:text-base">{t.name}</p>
+                    <p className="text-xs text-white/40 md:text-sm">{t.role}</p>
                   </div>
                 </figcaption>
               </figure>
