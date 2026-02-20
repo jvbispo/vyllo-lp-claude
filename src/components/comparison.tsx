@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { Reveal } from "./motion"
 import { Check, X, Minus } from "lucide-react"
 
@@ -30,18 +31,18 @@ const ROWS: {
 function CellIcon({ value }: { value: CellValue }) {
   if (value === true) {
     return (
-      <span className="inline-flex h-5 w-5 items-center justify-center rounded-full bg-vyllo/10">
-        <Check className="h-3 w-3 text-vyllo" />
+      <span className="inline-flex h-4 w-4 items-center justify-center rounded-full bg-vyllo/10 md:h-5 md:w-5">
+        <Check className="h-2.5 w-2.5 text-vyllo md:h-3 md:w-3" />
       </span>
     )
   }
   if (value === false) {
-    return <X className="h-4 w-4 text-neutral-300" />
+    return <X className="h-3 w-3 text-neutral-300 md:h-4 md:w-4" />
   }
   if (value === "partial") {
-    return <Minus className="h-4 w-4 text-neutral-400" />
+    return <Minus className="h-3 w-3 text-neutral-400 md:h-4 md:w-4" />
   }
-  return <span className="text-sm text-neutral-600">{value}</span>
+  return <span className="text-[11px] text-neutral-600 md:text-sm">{value}</span>
 }
 
 export function Comparison() {
@@ -67,29 +68,29 @@ export function Comparison() {
         </Reveal>
 
         <Reveal delay={0.1}>
-          <div className="mt-12 overflow-x-auto rounded-xl border border-neutral-200/60 bg-white shadow-[0_4px_24px_rgba(0,102,255,0.05),0_1px_3px_rgba(0,0,0,0.04)]">
-            <table className="w-full min-w-[700px]">
+          <div className="mt-8 overflow-x-auto rounded-xl border border-neutral-200/60 bg-white shadow-[0_4px_24px_rgba(0,102,255,0.05),0_1px_3px_rgba(0,0,0,0.04)] md:mt-12">
+            <table className="w-full min-w-[560px] md:min-w-[700px]">
               <thead>
                 <tr className="border-b border-neutral-100">
-                  <th className="py-3.5 px-5 text-left text-sm font-medium text-neutral-400">
+                  <th className="py-2 px-2 text-left text-xs font-medium text-neutral-400 md:py-3.5 md:px-5 md:text-sm">
                     Funcionalidade
                   </th>
-                  <th className="py-3.5 px-4 text-center">
-                    <span className="inline-flex items-center gap-1.5 text-sm font-semibold text-vyllo">
-                      <span className="h-1.5 w-1.5 rounded-full bg-vyllo" />
+                  <th className="py-2 px-1.5 text-center md:py-3.5 md:px-4">
+                    <span className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-vyllo md:gap-2 md:text-sm">
+                      <Image src="/o%20(4).png" alt="" width={20} height={20} className="h-4 w-4 shrink-0 md:h-5 md:w-5" aria-hidden />
                       Vyllo
                     </span>
                   </th>
-                  <th className="py-3.5 px-4 text-center text-sm text-neutral-400">
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
                     O Tradicional
                   </th>
-                  <th className="py-3.5 px-4 text-center text-sm text-neutral-400">
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
                     O Econômico
                   </th>
-                  <th className="py-3.5 px-4 text-center text-sm text-neutral-400">
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
                     O da Fintech
                   </th>
-                  <th className="py-3.5 px-4 text-center text-sm text-neutral-400">
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
                     O das Grandes Clínicas
                   </th>
                 </tr>
@@ -100,30 +101,30 @@ export function Comparison() {
                     key={row.feature}
                     className={i < ROWS.length - 1 ? "border-b border-neutral-50" : ""}
                   >
-                    <td className="py-3 px-5 text-sm text-neutral-700">
+                    <td className="py-2 px-2 text-xs text-neutral-700 md:py-3 md:px-5 md:text-sm">
                       {row.feature}
                     </td>
-                    <td className="py-3 px-4 text-center bg-vyllo/[0.02]">
+                    <td className="py-2 px-1.5 text-center bg-vyllo/[0.02] md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.vyllo} />
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.tradicional} />
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.economico} />
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.fintech} />
                       </div>
                     </td>
-                    <td className="py-3 px-4 text-center">
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.grandes} />
                       </div>

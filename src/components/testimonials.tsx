@@ -1,3 +1,4 @@
+import Image from "next/image"
 import { RevealStagger, RevealItem, Reveal } from "./motion"
 
 const TESTIMONIALS = [
@@ -6,24 +7,29 @@ const TESTIMONIALS = [
     role: "Periodontista",
     text: "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro. O suporte é de fácil acesso. Só agradecer à Vyllo 🫶🏻",
     accent: "#60a5fa",
+    image: "/dra-larissa-luduvice.jpg",
   },
   {
     name: "Dr. Luca Albuquerque",
     role: "Clínico-Geral",
     text: "É você bater o olho e ver como está o consultório. Não dá erro, não tem fórmula, é um facilitador que cumpre muito mais do que promete.",
     accent: "#a78bfa",
+    image: "/dr-luca-albuquerque.jpg",
   },
   {
     name: "Dra. Victoria Santana",
     role: "Cirurgiã-Dentista",
     text: "O app facilitou muito o meu dia a dia. Gestão mais organizada, atendimento mais ágil e sobra mais tempo para focar nos pacientes.",
     accent: "#34d399",
+    image: "/dra-victoria-santana.jpg",
   },
   {
     name: "Dr. Guilherme Tavares",
     role: "Endodontista",
     text: "É incrível encontrar uma ferramenta que realmente atende às demandas do dia a dia de um consultório.",
     accent: "#fbbf24",
+    image: "/dr-guilherme-tavares-new.jpg",
+    imageScale: 1.55,
   },
 ]
 
@@ -54,7 +60,7 @@ export function Testimonials() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-6xl px-6">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Quem usa, não volta pra planilha, papel ou{" "}
@@ -71,30 +77,35 @@ export function Testimonials() {
           </h2>
         </Reveal>
 
-        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
+        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
           {TESTIMONIALS.map((t) => (
             <RevealItem key={t.name}>
-              <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07]">
+              <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07] md:p-8">
                 {/* Accent line top */}
                 <div
-                  className="absolute top-0 left-6 right-6 h-px"
+                  className="absolute top-0 left-6 right-6 h-px md:left-8 md:right-8"
                   style={{ background: `linear-gradient(90deg, ${t.accent}40, transparent)` }}
                 />
 
-                <blockquote className="text-base leading-relaxed text-white/70">
+                <blockquote className="text-base leading-relaxed text-white/70 md:text-lg md:leading-relaxed">
                   &ldquo;{t.text}&rdquo;
                 </blockquote>
 
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4">
-                  <div
-                    className="flex h-9 w-9 items-center justify-center rounded-full text-xs font-semibold text-white"
-                    style={{ backgroundColor: t.accent }}
-                  >
-                    {t.name.charAt(0)}
+                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4 md:mt-8 md:gap-4 md:pt-5">
+                  <div className={`relative shrink-0 overflow-hidden rounded-full ring-2 ring-white/10 ${(t as { imageScale?: number }).imageScale ? "h-12 w-12 md:h-14 md:w-14" : "h-10 w-10 md:h-12 md:w-12"}`}>
+                    <Image
+                      src={t.image}
+                      alt=""
+                      width={56}
+                      height={56}
+                      className="object-cover"
+                      style={(t as { imageScale?: number }).imageScale != null ? { transform: `scale(${(t as { imageScale: number }).imageScale})` } : undefined}
+                      sizes="(min-width: 768px) 56px, 48px"
+                    />
                   </div>
-                  <div>
-                    <p className="text-sm font-medium text-white">{t.name}</p>
-                    <p className="text-xs text-white/40">{t.role}</p>
+                  <div className="min-w-0">
+                    <p className="text-sm font-medium text-white md:text-base">{t.name}</p>
+                    <p className="text-xs text-white/40 md:text-sm">{t.role}</p>
                   </div>
                 </figcaption>
               </figure>

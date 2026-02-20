@@ -65,6 +65,12 @@ export function Navbar() {
           >
             Testar grátis 15 dias
           </a>
+          <a
+            href={`${APP_URL}/auth/login`}
+            className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
+          >
+            Login
+          </a>
         </div>
 
         <button
@@ -93,14 +99,23 @@ export function Navbar() {
             <a
               href={CALC_URL}
               className="text-base text-neutral-500"
+              onClick={() => setMobileOpen(false)}
             >
               Calcule seu Lucro Real →
             </a>
             <a
               href={`${APP_URL}/auth/registro`}
               className="rounded-lg bg-vyllo px-4 py-3 text-center text-base font-medium text-white"
+              onClick={() => setMobileOpen(false)}
             >
               Testar grátis 15 dias
+            </a>
+            <a
+              href={`${APP_URL}/auth/login`}
+              className="text-base text-neutral-500"
+              onClick={() => setMobileOpen(false)}
+            >
+              Login
             </a>
           </div>
         </div>

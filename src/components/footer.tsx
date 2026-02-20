@@ -1,6 +1,6 @@
 import Image from "next/image"
 
-const WHATSAPP_URL = "https://wa.me/5500000000000"
+const WHATSAPP_URL = "https://wa.me/5579999348279"
 
 export function Footer() {
   return (
