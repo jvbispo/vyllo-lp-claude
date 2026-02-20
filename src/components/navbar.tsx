@@ -12,6 +12,8 @@ const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ]
 
+const CALC_URL = "https://calculadora.vyllo.com.br"
+
 const APP_URL = "https://app.vyllo.com.br"
 
 export function Navbar() {
@@ -52,16 +54,16 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           <a
-            href={`${APP_URL}/auth/login`}
+            href={CALC_URL}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
-            Entrar
+            Calcule seu Lucro Real →
           </a>
           <a
             href={`${APP_URL}/auth/registro`}
             className="rounded-lg bg-vyllo px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0052cc]"
           >
-            Teste gratis
+            Testar grátis 15 dias
           </a>
         </div>
 
@@ -89,16 +91,16 @@ export function Navbar() {
             ))}
             <hr className="border-neutral-100" />
             <a
-              href={`${APP_URL}/auth/login`}
+              href={CALC_URL}
               className="text-base text-neutral-500"
             >
-              Entrar
+              Calcule seu Lucro Real →
             </a>
             <a
               href={`${APP_URL}/auth/registro`}
               className="rounded-lg bg-vyllo px-4 py-3 text-center text-base font-medium text-white"
             >
-              Teste gratis
+              Testar grátis 15 dias
             </a>
           </div>
         </div>

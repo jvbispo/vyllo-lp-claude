@@ -7,59 +7,44 @@ import { ChevronDown } from "lucide-react"
 
 const FAQS = [
   {
-    question: "Preciso instalar alguma coisa?",
+    question: "Serve pra quem atende em mais de um consultório?",
     answer:
-      "Nao. O Vyllo funciona 100% no navegador — computador, tablet ou celular. Tambem da pra instalar como app no celular, direto da tela inicial, sem precisar de loja.",
+      "Sim. Cadastre múltiplos locais, cada um com procedimentos, preços e convênios próprios. Agenda e financeiro consolidam tudo.",
   },
   {
-    question: "Funciona bem no celular?",
+    question: "Funciona no celular?",
     answer:
-      "Sim. A interface foi pensada pra mobile desde o inicio. Da pra agendar, registrar nota clinica e consultar prontuario direto do celular, entre um paciente e outro.",
-  },
-  {
-    question: "O teste gratis tem limitacao?",
-    answer:
-      "Nao. Nos 14 dias voce tem acesso a tudo. Sem restricao e sem cartao de credito.",
-  },
-  {
-    question: "E se eu mudar de consultorio?",
-    answer:
-      "Seus dados vao com voce. O Vyllo e vinculado a voce, nao ao consultorio. Mude de clinica, adicione um novo local e continue de onde parou — pacientes, prontuarios e financeiro intactos.",
-  },
-  {
-    question: "Consigo importar meus pacientes?",
-    answer:
-      "No momento o cadastro e manual, mas rapido. Importacao via planilha esta no roadmap.",
+      "Sim. 100% no celular e também no computador. A maioria dos nossos dentistas usa no celular entre pacientes.",
   },
   {
     question: "Meus dados ficam seguros?",
     answer:
-      "Sim. Criptografia, servidores no Brasil e backups automaticos. Seus dados sao seus.",
+      "Criptografia, armazenamento AWS, LGPD. Mesmo padrão de bancos digitais.",
   },
   {
-    question: "Posso usar em mais de um consultorio?",
+    question: "Posso cancelar quando quiser?",
     answer:
-      "Sim. Cadastre os locais onde voce atende, cada um com procedimentos, precos e horarios proprios. Agenda e financeiro separados por local, prontuario unificado.",
+      "Sim. Sem multa, sem ligar, sem \"reunião de retenção\". Você clica em cancelar e acabou.",
   },
   {
-    question: "Da pra usar durante o atendimento?",
+    question: "O que são as 200 confirmações?",
     answer:
-      "Sim. O prontuario abre rapido, a nota clinica salva automaticamente, e o odontograma funciona por toque. Foi pensado pra voce usar na cadeira, nao so no escritorio.",
+      "Todo mês você tem 200 mensagens automáticas de confirmação de consulta via WhatsApp. Para consultórios autônomos, cobre tranquilamente o mês.",
   },
   {
-    question: "Como funciona o suporte?",
+    question: "Já uso outro sistema. E agora?",
     answer:
-      "Direto por WhatsApp com resposta rapida. Equipe pequena e atenciosa. Sem robo, sem fila.",
+      "Teste 15 dias sem cancelar o outro. Compare na prática. Se preferir a Vyllo, a gente te ajuda na migração.",
   },
   {
-    question: "Posso cancelar a qualquer momento?",
+    question: "E depois dos 15 dias?",
     answer:
-      "Sim, sem multa. Voce mantem o acesso ate o fim do periodo pago.",
+      "Você decide se assina. Sem cobrança automática. Se não assinar, perde as features premium mas mantém a Calculadora de Lucro pra sempre.",
   },
   {
-    question: "Vao ter novas funcionalidades?",
+    question: "Vai ter inteligência artificial?",
     answer:
-      "Sim. Lancamos atualizacoes frequentes baseadas no feedback dos dentistas. Confirmacao automatica por WhatsApp e a proxima.",
+      "Sim. Estamos construindo uma IA que agenda, confirma e responde seus pacientes no WhatsApp 24/7. Quem assina agora terá acesso prioritário e condições que não vamos repetir.",
   },
 ]
 
@@ -119,7 +104,7 @@ export function Faq() {
       <div className="mx-auto max-w-2xl px-6">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            Perguntas frequentes
+            Antes de testar, você provavelmente quer saber:
           </h2>
         </Reveal>
 

@@ -8,12 +8,13 @@ import { Reveal } from "./motion"
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
 const CHECKS = [
-  "Atende em um ou mais consultorios",
-  "Quer seus dados organizados num lugar so",
-  "Esta cansado de interfaces dos anos 2000",
-  "Quer saber exatamente quanto faturou no mes",
-  "Nao quer pagar R$200/mes por features que nao usa",
-  "Quer um sistema que funcione no celular",
+  "Trabalha sozinho ou com equipe enxuta (1 a 3 cadeiras)",
+  "Já tentou organizar as finanças em planilhas e desistiu",
+  "Não sabe o lucro real dos seus procedimentos",
+  "Perde pacientes por falta de confirmação",
+  "Quer prontuário no celular, tablet ou computador, não em papel",
+  "Não quer pagar R$120+/mês num sistema cheio de coisa que não usa",
+  "Quer testar antes de pagar. sem cartão, sem compromisso",
 ]
 
 function CheckItem({ text, index, inView }: { text: string; index: number; inView: boolean }) {
@@ -42,16 +43,13 @@ export function ForYou() {
   const inView = useInView(ref, { once: true, margin: "-80px" })
 
   return (
-    <section className="relative py-24 md:py-36">
+    <section className="relative py-12 md:py-28">
       <div ref={ref} className="relative mx-auto max-w-5xl px-6">
         <div className="mx-auto max-w-2xl">
           <Reveal>
-            <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-              O Vyllo e para voce se...
+            <h2 className="text-2xl text-center md:text-left font-bold tracking-tight text-neutral-900 sm:text-4xl">
+              A Vyllo foi feita pra você se...
             </h2>
-            <p className="mt-3 text-base text-neutral-500">
-              Se voce se identificou com pelo menos dois itens, o Vyllo foi feito pra voce.
-            </p>
           </Reveal>
 
           <ul className="mt-10 space-y-4">

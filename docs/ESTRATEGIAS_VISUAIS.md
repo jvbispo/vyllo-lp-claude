@@ -1,6 +1,6 @@
 # Vyllo Landing Page — Estrategias Visuais
 
-Referencia completa das tecnicas visuais usadas na landing page do Vyllo. Este documento serve como guia para futuros projetos e manutencao.
+Referencia completa das tecnicas visuais usadas na landing page da Vyllo. Este documento serve como guia para futuros projetos e manutencao.
 
 ## Stack
 

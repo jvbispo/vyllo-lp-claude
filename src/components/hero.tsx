@@ -7,6 +7,7 @@ import Image from "next/image"
 import { useRef, type ReactNode } from "react"
 
 const APP_URL = "https://app.vyllo.com.br"
+const CALC_URL = "https://calculadora.vyllo.com.br"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
@@ -590,34 +591,15 @@ export function Hero() {
 
       <div className="relative mx-auto max-w-5xl px-6">
         <div className="max-w-3xl">
-          <motion.div
-            initial={{ opacity: 0, y: 12 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, ease }}
-            className="inline-flex items-center gap-2 rounded-full border border-vyllo/15 bg-vyllo/5 px-3.5 py-1.5"
-          >
-            <span className="h-1.5 w-1.5 rounded-full bg-vyllo" />
-            <span className="text-xs font-medium text-vyllo">Software para dentistas</span>
-          </motion.div>
-
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5, delay: 0.03, ease }}
-            className="mt-6 max-w-xl text-base leading-relaxed text-neutral-400"
-          >
-            Seus dados espalhados em 3 sistemas, papel e planilha? Agora nao mais.
-          </motion.p>
-
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.07, ease }}
-            className="mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
+            className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
           >
-            Sua agenda, prontuario e financeiro
+            Quanto dinheiro seu consultório{" "}
             <br className="hidden sm:block" />
-            <span className="bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] bg-clip-text text-transparent">onde voce for.</span>
+            <span className="bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] bg-clip-text text-transparent">perdeu este mês?</span>
           </motion.h1>
 
           <motion.p
@@ -626,15 +608,14 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-500"
           >
-            O sistema do dentista que quer atender, nao administrar.
-            Leve seus pacientes e dados para qualquer consultorio.
+            67% dos dentistas autônomos no Brasil não usam nenhum sistema de gestão. Dos que usam, quase nenhum sabe o lucro real de cada procedimento. O Vyllo resolve os dois problemas, e custa menos que um kit de resina.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.17, ease }}
-            className="mt-10 flex flex-col gap-3 sm:flex-row sm:items-center"
+            className="mt-10 flex flex-col gap-3"
           >
             <div className="relative inline-flex">
               <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg transition-opacity group-hover:opacity-30" />
@@ -642,12 +623,24 @@ export function Hero() {
                 href={`${APP_URL}/auth/registro`}
                 className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
               >
-                Comecar teste gratis
+                Testar grátis por 15 dias
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </div>
-            <span className="text-sm text-neutral-500">
-              14 dias gratis. Sem cartao.
+            <div className="flex flex-wrap items-center gap-x-3 gap-y-4 sm:gap-y-3">
+              <span className="text-sm text-neutral-500">
+                Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.
+              </span>
+              <a
+                href={CALC_URL}
+                className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200/80 bg-transparent px-3 py-1.5 text-xs font-medium text-neutral-500 transition-colors hover:border-vyllo/30 hover:text-vyllo"
+              >
+                Ir para calculadora de Lucro
+                <ArrowRight className="h-3 w-3" />
+              </a>
+            </div>
+            <span className="text-sm text-neutral-400">
+              Sem cartão · 200 confirmações WhatsApp inclusas · Pronto em 5 min
             </span>
           </motion.div>
         </div>

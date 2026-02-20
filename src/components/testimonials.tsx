@@ -2,22 +2,28 @@ import { RevealStagger, RevealItem, Reveal } from "./motion"
 
 const TESTIMONIALS = [
   {
-    name: "Dra. Camila R.",
-    role: "Ortodontista — Belo Horizonte",
-    text: "Finalmente um sistema que nao parece ter sido feito nos anos 2000. A interface e limpa, rapida e faz sentido para o dia a dia.",
+    name: "Dra. Larissa Luduvice",
+    role: "Periodontista",
+    text: "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro. O suporte é de fácil acesso. Só agradecer à Vyllo 🫶🏻",
     accent: "#60a5fa",
   },
   {
-    name: "Dr. Lucas M.",
-    role: "Clinico Geral — Sao Paulo",
-    text: "O prontuario com timeline mudou minha rotina. Tenho tudo do paciente em um lugar so, sem ficar alternando entre apps.",
+    name: "Dr. Luca Albuquerque",
+    role: "Clínico-Geral",
+    text: "É você bater o olho e ver como está o consultório. Não dá erro, não tem fórmula, é um facilitador que cumpre muito mais do que promete.",
     accent: "#a78bfa",
   },
   {
-    name: "Dra. Patricia S.",
-    role: "Endodontista — Curitiba",
-    text: "Mandei mensagem no WhatsApp e me responderam em minutos. Isso faz toda a diferenca quando voce esta no meio de um atendimento.",
+    name: "Dra. Victoria Santana",
+    role: "Cirurgiã-Dentista",
+    text: "O app facilitou muito o meu dia a dia. Gestão mais organizada, atendimento mais ágil e sobra mais tempo para focar nos pacientes.",
     accent: "#34d399",
+  },
+  {
+    name: "Dr. Guilherme Tavares",
+    role: "Endodontista",
+    text: "É incrível encontrar uma ferramenta que realmente atende às demandas do dia a dia de um consultório.",
+    accent: "#fbbf24",
   },
 ]
 
@@ -51,14 +57,14 @@ export function Testimonials() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            O que dentistas dizem
+            Quem usa, não volta pra planilha, papel ou{" "}
+            <span className="relative inline-block">
+              <span className="text-white/30 line-through decoration-red-400/70 decoration-2">sistema complicado</span>
+            </span>
           </h2>
-          <p className="mt-3 text-base text-white/50">
-            Feedback real de quem usa o Vyllo no consultorio.
-          </p>
         </Reveal>
 
-        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-3">
+        <RevealStagger className="mt-14 grid gap-6 md:grid-cols-2 lg:grid-cols-4">
           {TESTIMONIALS.map((t) => (
             <RevealItem key={t.name}>
               <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07]">

@@ -370,6 +370,7 @@ function Feature({
   accentColor,
   visual,
   badge,
+  highlightDetailIndex,
 }: {
   icon: LucideIcon
   label: string
@@ -380,41 +381,68 @@ function Feature({
   accentColor: string
   visual: ReactNode
   badge?: string
+  /** Índice (0-based) do detalhe a destacar em azul/cor do bloco */
+  highlightDetailIndex?: number
 }) {
   const textBlock = (
     <Reveal>
-      <div
-        className="flex h-10 w-10 items-center justify-center rounded-lg"
-        style={{ backgroundColor: `${accentColor}12` }}
-      >
-        <Icon className="h-5 w-5" style={{ color: accentColor }} />
+      <div className="mt-4 flex flex-col items-center pb-10 md:mt-0 md:pb-0 md:items-start">
+        <div
+          className="flex h-10 w-10 shrink-0 items-center justify-center rounded-lg"
+          style={{ backgroundColor: `${accentColor}12` }}
+        >
+          <Icon className="h-5 w-5" style={{ color: accentColor }} />
+        </div>
+        <div className="mt-3 flex items-center justify-center gap-2 md:justify-start">
+          <p className="text-sm font-medium" style={{ color: accentColor }}>
+            {label}
+          </p>
+          {badge && (
+            <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
+              {badge}
+            </span>
+          )}
+        </div>
       </div>
-      <div className="mt-4 flex items-center gap-2">
-        <p className="text-sm font-medium" style={{ color: accentColor }}>
-          {label}
-        </p>
-        {badge && (
-          <span className="rounded-full bg-amber-100 px-2 py-0.5 text-[10px] font-semibold text-amber-700">
-            {badge}
-          </span>
-        )}
-      </div>
-      <h3 className="mt-2 text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl">
+      <h3 className="mt-2 text-center text-2xl font-bold tracking-tight text-neutral-900 sm:text-3xl md:text-left">
         {title}
       </h3>
-      <p className="mt-4 text-base leading-relaxed text-neutral-500">
+      <p className="mt-4 text-center text-base leading-relaxed text-neutral-500 md:text-left">
         {description}
       </p>
-      <ul className="mt-6 space-y-2.5">
-        {details.map((d) => (
-          <li key={d} className="flex items-start gap-3 text-sm text-neutral-600">
-            <span
-              className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
-              style={{ backgroundColor: accentColor }}
-            />
-            {d}
-          </li>
-        ))}
+      <ul className="mt-6 flex flex-col space-y-2.5 items-center md:items-stretch">
+        {details.map((d, i) => {
+          const isHighlight = highlightDetailIndex === i
+          const hasMobileBreak = d.includes(" | ")
+          const parts = hasMobileBreak ? d.split(" | ") : null
+          const detailContent = parts ? (
+            <>
+              <span>{parts[0]}</span>
+              <span className="hidden md:inline"> </span>
+              <br className="md:hidden" />
+              <span>{parts[1]}</span>
+            </>
+          ) : (
+            d
+          )
+          return (
+            <li
+              key={d}
+              className={`flex items-start justify-center gap-3 text-center text-sm md:justify-start md:text-left ${
+                isHighlight ? "font-semibold" : "text-neutral-600"
+              }`}
+              style={isHighlight ? { color: accentColor } : undefined}
+            >
+              <span
+                className="mt-1.5 h-1.5 w-1.5 shrink-0 rounded-full"
+                style={{ backgroundColor: accentColor }}
+              />
+              <span className="min-w-0 flex-1">
+                {detailContent}
+              </span>
+            </li>
+          )
+        })}
       </ul>
     </Reveal>
   )
@@ -434,16 +462,22 @@ function Feature({
     </Reveal>
   )
 
+  const textWrapper = (
+    <div className="py-6 lg:py-0">
+      {textBlock}
+    </div>
+  )
+
   return (
-    <div className="grid items-center gap-12 md:gap-20 lg:grid-cols-2">
+    <div className="flex flex-col gap-12 md:gap-20 lg:grid lg:items-center lg:grid-cols-2">
       {reverse ? (
         <>
-          <div className="lg:order-2">{textBlock}</div>
+          <div className="lg:order-2">{textWrapper}</div>
           <div className="lg:order-1">{visualBlock}</div>
         </>
       ) : (
         <>
-          {textBlock}
+          {textWrapper}
           {visualBlock}
         </>
       )}
@@ -469,40 +503,43 @@ export function Features() {
 
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
-          <p className="text-sm font-medium text-vyllo">Funcionalidades</p>
-          <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            Tudo integrado. Nada a mais.
-          </h2>
-          <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-500">
-            Da agenda ao financeiro, cada modulo conversa com o outro. Sem apps
-            desconectados, sem retrabalho.
-          </p>
+          <div className="text-center md:text-left">
+            <p className="text-sm font-medium text-vyllo">Funcionalidades</p>
+            <h2 className="mt-3 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
+              Tudo num lugar só. Feito pra quem trabalha sozinho.
+            </h2>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-neutral-500 md:max-w-xl">
+              Agenda, prontuário, odontograma, financeiro e WhatsApp automático. Sem módulo extra, sem cobrança surpresa, sem precisar de TI.
+            </p>
+          </div>
         </Reveal>
 
-        <div className="mt-20 space-y-28 md:space-y-36">
+        <div className="mt-20 space-y-12 md:space-y-36">
           <Feature
             icon={Calendar}
             label="Agenda"
-            title="Agenda visual, agendamento rapido."
-            description="Visualize a semana inteira, bloqueie horarios e agende com procedimentos pre-configurados. Tudo em dois cliques."
+            title="Agenda que trabalha por você"
+            description="Clica, confirma e cancela. E o melhor: seus pacientes recebem confirmação no WhatsApp no automático. Chega de ligar um por um."
             details={[
-              "Veja seu dia e semana de relance",
-              "Bloqueie ferias e intervalos sem complicacao",
-              "Procedimentos pre-configurados — agende sem digitar",
-            ]}
+              "Visão semanal e diária de relance",
+              "Bloqueie férias e horários sem complicação",
+              "200 confirmações automáticas no WhatsApp/mês | já inclusas no plano",
+             ]}
             accentColor="#0066ff"
             visual={<AgendaVisual />}
+            highlightDetailIndex={2}
           />
 
           <Feature
             icon={FileText}
-            label="Prontuario"
-            title="Seus pacientes, seus registros."
-            description="Notas clinicas, odontograma interativo, plano de tratamento e anamnese. Tudo salvo no seu perfil — mude de consultorio e leve tudo com voce."
+            label="Prontuário"
+            title="Prontuário completo. No celular, tablet e computador"
+            description="Notas clínicas, plano de tratamento com sessões e prioridades, anamnese com modelos personalizados e prontos, orçamentos integrados e fotos antes/depois. Odontograma com multifaces e cores. Marque cada região do dente com precisão. Tudo salvo na nuvem, acessível de qualquer lugar."
             details={[
               "Encontre qualquer registro em segundos",
-              "Nunca perca de vista o que falta fazer no tratamento",
-              "Anamnese pronta — so personalizar e aplicar",
+              "Crie seus modelos de Anamnese ou use os nossos",
+              "Fotos antes/depois com Slider Visual",
+              "Gere orçamentos de forma simples e rápida",
             ]}
             reverse
             accentColor="#8b5cf6"
@@ -512,12 +549,12 @@ export function Features() {
           <Feature
             icon={DollarSign}
             label="Financeiro"
-            title="Saiba exatamente quanto voce faturou."
-            description="Receitas, despesas, parcelas e maquininhas de cartao. Seu financeiro pessoal organizado por periodo, local e procedimento."
+            title="O financeiro que não mente pra você"
+            description="Receitas, despesas, parcelas, recorrentes automáticas. E o que nenhum outro sistema faz: seu lucro real por procedimento (não o faturamento)."
             details={[
-              "No fim do mes, saiba exatamente quanto sobrou",
-              "Parcelas e maquininhas com calculo de taxa automatico",
-              "Relatorios por periodo — sem precisar de planilha",
+              "Dashboard mostra pra onde vai cada real",
+              "Lucro real por procedimento, não o faturamento",
+              "Baixar Relatórios em PDF ou Planilha",
             ]}
             accentColor="#10b981"
             visual={<FinanceiroVisual />}
@@ -526,13 +563,12 @@ export function Features() {
           <Feature
             icon={MessageCircle}
             label="WhatsApp"
-            badge="Em breve"
-            title="Seus pacientes confirmam direto com voce."
-            description="Lembrete D-1 por WhatsApp no seu nome. Paciente confirma com um toque. Menos faltas, mais previsibilidade na sua agenda."
+            title="Paciente confirmado sem você levantar o dedo"
+            description="O paciente recebe mensagem automática no WhatsApp pedindo confirmação e lembretes. Sem instalar nada, sem conectar número pessoal, sem pagar por mensagem avulsa. Pro consultório autônomo nosso plano cobre o mês inteiro."
             details={[
-              "Reduza faltas sem levantar o dedo",
-              "Paciente confirma com um toque",
-              "Integrado com sua agenda — tudo automatico",
+              "Lembrete automático 24h antes e no dia do atendimento",
+              "Sem conectar seu número pessoal",
+              "200 mensagens/mês inclusas, sem custo extra",
             ]}
             reverse
             accentColor="#22c55e"
@@ -541,7 +577,7 @@ export function Features() {
         </div>
 
         {/* Extra highlights */}
-        <RevealStagger className="mt-20 grid gap-4 sm:grid-cols-1 max-w-md mx-auto">
+        {/* <RevealStagger className="mt-20 grid gap-4 sm:grid-cols-1 max-w-md mx-auto">
           {HIGHLIGHTS.map((h) => (
             <RevealItem key={h.label}>
               <div className="flex items-center gap-4 rounded-xl border border-neutral-200 bg-white p-5 transition-all hover:shadow-md">
@@ -558,7 +594,7 @@ export function Features() {
               </div>
             </RevealItem>
           ))}
-        </RevealStagger>
+        </RevealStagger> */}
       </div>
     </section>
   )

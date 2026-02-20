@@ -14,27 +14,27 @@ const STEPS: {
   color: string
 }[] = [
   {
-    icon: Calendar,
-    label: "Agende",
-    description: "Em qualquer dos seus consultorios. Dois toques.",
+    icon: DollarSign,
+    label: "O mês foi cheio, mas a conta não fecha",
+    description: "Agenda lotada, 20 pacientes por semana, e no dia 30 você abre o extrato e pensa: cadê o dinheiro? Se você não sabe o custo real de cada procedimento, o faturamento engana. Todo mês.",
     color: "#60a5fa",
   },
   {
-    icon: Stethoscope,
-    label: "Atenda",
-    description: "Prontuario ja aberto. Registre durante o atendimento.",
+    icon: FileText,
+    label: "Sua planilha tem mais abas que seus pacientes têm dentes",
+    description: "Você já tentou organizar no Excel. Criou 14 abas, 3 macros e uma fórmula que só funciona na lua cheia. Parou de atualizar em março. Agora controla de cabeça. E de cabeça, ninguém acerta.",
     color: "#a78bfa",
   },
   {
-    icon: FileText,
-    label: "Registre",
-    description: "Plano, orcamento e notas. Tudo salvo no seu perfil.",
+    icon: Calendar,
+    label: "Agenda num app, financeiro em outro, prontuário no papel",
+    description: "Google Agenda pra marcar. Caderninho pra anotar. WhatsApp pra confirmar. E no final do dia, nada conversa com nada. Você gasta mais tempo organizando do que atendendo.",
     color: "#34d399",
   },
   {
-    icon: DollarSign,
-    label: "Cobre",
-    description: "Financeiro atualizado na hora. Sem planilha.",
+    icon: Stethoscope,
+    label: "Você cobra R$280 na restauração e acha que lucra R$230",
+    description: "Depois de material, luva, aluguel proporcional, imposto e tempo de cadeira, seu lucro real pode ser R$40. Ou negativo. Sem essa conta, você está literalmente pagando para trabalhar — e nem sabe.",
     color: "#fbbf24",
   },
 ]
@@ -182,13 +182,9 @@ export function Workflow() {
           transition={{ duration: 0.6, ease }}
           className="text-center"
         >
-          <p className="text-sm font-medium text-vyllo">Como funciona</p>
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
-            Da agenda ao financeiro em 4 passos.
+            Isso parece o seu dia a dia?
           </h2>
-          <p className="mx-auto mt-4 max-w-lg text-base text-white/50">
-            Um fluxo simples que conecta tudo. Sem retrabalho, sem app separado.
-          </p>
         </motion.div>
 
         {/* Desktop layout: horizontal steps with connectors */}

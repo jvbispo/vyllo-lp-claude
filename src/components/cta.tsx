@@ -2,6 +2,7 @@ import { Reveal } from "./motion"
 import { ArrowRight } from "lucide-react"
 
 const APP_URL = "https://app.vyllo.com.br"
+const CALC_URL = "https://calculadora.vyllo.com.br"
 
 export function Cta() {
   return (
@@ -35,15 +36,11 @@ export function Cta() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <div className="flex flex-col items-center text-center">
-            <p className="text-sm text-neutral-500 mb-4">
-              Chega de planilha, papel e sistema da clinica.
-            </p>
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-              Comece a usar o Vyllo hoje.
+              Seu consultório está lucrando, ou você está pagando pra trabalhar?
             </h2>
             <p className="mt-4 max-w-md text-base text-neutral-400">
-              14 dias gratis, sem cartao de credito. Configure em 5 minutos
-              e descubra como e ter seu consultorio no bolso.
+              15 dias grátis. Sem cartão. Sem risco. Só a verdade sobre seus números.
             </p>
             <div className="relative mt-8 inline-flex">
               <div className="absolute -inset-2 rounded-xl bg-white/20 blur-xl" />
@@ -51,10 +48,16 @@ export function Cta() {
                 href={`${APP_URL}/auth/registro`}
                 className="group relative inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-neutral-900 shadow-lg shadow-white/10 transition-all hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/15 active:scale-[0.98]"
               >
-                Comecar teste gratis
+                Começar meu teste grátis
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </div>
+            <a
+              href={CALC_URL}
+              className="mt-4 text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
+            >
+              Só quer o número? Calculadora de Lucro por Procedimento — grátis →
+            </a>
           </div>
         </Reveal>
       </div>
