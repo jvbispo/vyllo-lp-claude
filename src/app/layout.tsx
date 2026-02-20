@@ -9,30 +9,61 @@ const inter = Inter({
 })
 
 export const metadata: Metadata = {
-  title: "Vyllo — Software para Dentistas",
+  title: "Vyllo — Software para Dentista Autônomo | Agenda, WhatsApp e Lucro Real",
   description:
-    "Agenda, prontuário e financeiro no seu bolso. Leve seus pacientes e dados para qualquer consultório. Pensado para dentistas autônomos. 14 dias grátis.",
+    "Sistema de gestão para dentista autônomo: agenda com confirmação automática no WhatsApp (200 mensagens/mês inclusas), prontuário com odontograma multifaces, anamnese, orçamentos e o único software com lucro real por procedimento — não só faturamento. R$ 79,90/mês. Trial de 15 dias grátis, sem cartão.",
   metadataBase: new URL("https://vyllo.com.br"),
+  icons: {
+    icon: "apple-touch-icon.png",
+    shortcut: "apple-touch-icon.png",
+    apple: "apple-touch-icon.png",
+  },
   alternates: {
     canonical: "/",
   },
   keywords: [
+    // Intenção primária
     "software para dentista",
-    "software odontológico",
-    "dentista autônomo",
-    "prontuário digital",
-    "agenda odontológica",
-    "odontograma",
-    "plano de tratamento",
-    "financeiro dentista",
-    "gestão odontológica",
     "sistema para dentista",
-    "consultório odontológico",
+    "software odontológico",
+    "sistema odontológico",
+    "sistema de gestão odontológica",
+    // Audiência específica
+    "software para dentista autônomo",
+    "sistema para dentista autônomo",
+    "dentista autônomo",
+    "consultório odontológico autônomo",
+    "gestão para dentista autônomo",
+    // Funcionalidades com intenção de busca
+    "confirmação de consulta whatsapp dentista",
+    "confirmação automática whatsapp odontologia",
+    "agenda para dentista",
+    "agenda odontológica online",
+    "prontuário digital dentista",
+    "prontuário eletrônico odontológico",
+    "odontograma digital",
+    "odontograma online",
+    "anamnese odontológica digital",
+    "plano de tratamento odontológico",
+    "orçamento odontológico",
+    // Diferencial financeiro
+    "lucro real por procedimento dentista",
+    "gestão financeira para dentista",
+    "dashboard financeiro odontológico",
+    "financeiro dentista",
+    // Comparação / alternativa
+    "software odontológico barato",
+    "alternativa clinicorp",
+    "alternativa dental office",
+    // Genérico mas relevante
+    "software odontológico brasil",
+    "app para dentista",
+    "vyllo",
   ],
   openGraph: {
-    title: "Vyllo — Seu consultório no bolso",
+    title: "Vyllo — O software do dentista que quer atender, não administrar",
     description:
-      "Agenda, prontuário e financeiro onde você for. O sistema do dentista que quer atender, não administrar. 14 dias grátis.",
+      "Agenda com WhatsApp automático (200/mês incluso), prontuário com odontograma multifaces e o único sistema com lucro real por procedimento. Para quem trabalha sozinho. R$ 79,90/mês. Trial de 15 dias grátis, sem cartão.",
     type: "website",
     locale: "pt_BR",
     siteName: "Vyllo",
@@ -40,9 +71,9 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: "summary_large_image",
-    title: "Vyllo — Software para Dentistas",
+    title: "Vyllo — Software para Dentista Autônomo",
     description:
-      "Agenda, prontuário e financeiro no seu bolso. 14 dias grátis.",
+      "Agenda com WhatsApp automático (200/mês incluso), prontuário com odontograma e o único com lucro real por procedimento. 15 dias grátis, sem cartão.",
   },
   robots: {
     index: true,
@@ -50,6 +81,9 @@ export const metadata: Metadata = {
     googleBot: {
       index: true,
       follow: true,
+      "max-snippet": -1,
+      "max-image-preview": "large",
+      "max-video-preview": -1,
     },
   },
 }

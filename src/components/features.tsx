@@ -410,7 +410,7 @@ function Feature({
       <p className="mt-4 text-center text-base leading-relaxed text-neutral-500 md:text-left">
         {description}
       </p>
-      <ul className="mt-6 flex flex-col space-y-2.5 items-center md:items-stretch">
+      <ul className="mt-6 flex flex-col space-y-2.5 items-stretch">
         {details.map((d, i) => {
           const isHighlight = highlightDetailIndex === i
           const hasMobileBreak = d.includes(" | ")
@@ -428,7 +428,7 @@ function Feature({
           return (
             <li
               key={d}
-              className={`flex items-start justify-center gap-3 text-center text-sm md:justify-start md:text-left ${
+              className={`flex items-start gap-3 text-left text-sm ${
                 isHighlight ? "font-semibold" : "text-neutral-600"
               }`}
               style={isHighlight ? { color: accentColor } : undefined}
