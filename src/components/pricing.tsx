@@ -1,9 +1,13 @@
 "use client"
 
-import { useState } from "react"
-import { motion, AnimatePresence } from "framer-motion"
+import { useState, useEffect, useRef } from "react"
+import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Reveal, CountUp } from "./motion"
 import { Check, ArrowRight } from "lucide-react"
+
+const BADGE_STAGGER_DELAY = 0.05
+const SPOTLIGHT_LOOP_MS = 46000
+const SPOTLIGHT_TICK_MS = 50
 
 const APP_URL = "https://app.vyllo.com.br"
 
@@ -23,7 +27,7 @@ const CYCLES: {
 ]
 
 const INCLUDED = [
-  "Agenda com confirmação automática no WhatsApp | (200 créditos/mês)",
+  "Agenda com confirmação automática no WhatsApp (200 créditos/mês)",
   "Prontuário digital com odontograma multifaces",
   "Anamnese com modelos personalizáveis",
   "Plano de tratamento com prioridades e sessões",
@@ -88,6 +92,81 @@ function Stats() {
         <p className="mt-1 text-xs text-neutral-400">taxas escondidas</p>
       </div>
     </div>
+  )
+}
+
+const SPOTLIGHT_RADIUS = 1.6
+
+function getHighlightIntensity(progress: number, index: number, total: number): number {
+  const spot = progress * total
+  const d1 = Math.abs(spot - index)
+  const d2 = Math.abs(spot - index - total)
+  const d3 = Math.abs(spot - index + total)
+  const dist = Math.min(d1, d2, d3)
+  return Math.max(0, 1 - dist / SPOTLIGHT_RADIUS)
+}
+
+const badgeVariants = {
+  hidden: { opacity: 0, y: 10, scale: 0.96 },
+  visible: { opacity: 1, y: 0, scale: 1 },
+}
+
+function AnimatedBadges() {
+  const ref = useRef<HTMLDivElement>(null)
+  const isInView = useInView(ref, { once: true, margin: "-80px" })
+  const [progress, setProgress] = useState(0)
+
+  useEffect(() => {
+    if (!isInView) return
+    const delta = SPOTLIGHT_TICK_MS / SPOTLIGHT_LOOP_MS
+    const timer = setInterval(() => {
+      setProgress((p) => (p >= 1 ? 0 : p + delta))
+    }, SPOTLIGHT_TICK_MS)
+    return () => clearInterval(timer)
+  }, [isInView])
+
+  return (
+    <motion.div
+      ref={ref}
+      className="mx-auto mt-14 flex max-w-3xl flex-wrap items-center justify-center gap-2.5"
+      initial="hidden"
+      animate={isInView ? "visible" : "hidden"}
+      variants={{
+        visible: { transition: { staggerChildren: BADGE_STAGGER_DELAY } },
+      }}
+    >
+      {INCLUDED.map((item, index) => {
+        const parts = item.includes(" | ") ? item.split(" | ") : null
+        const intensity = isInView ? getHighlightIntensity(progress, index, INCLUDED.length) : 0
+        return (
+          <motion.span
+            key={item}
+            variants={badgeVariants}
+            transition={{ duration: 0.3, ease: [0.21, 0.47, 0.32, 0.98] }}
+            className="inline-flex items-center gap-2 rounded-full border bg-white/80 px-4 py-2 text-center text-sm text-neutral-600 shadow-sm backdrop-blur-sm hover:border-vyllo/30 hover:shadow-[0_0_12px_rgba(0,102,255,0.12)]"
+            style={{
+              borderColor: `rgba(0,102,255,${0.18 + 0.3 * intensity})`,
+              boxShadow: intensity > 0
+                ? `0 0 14px rgba(0,102,255,${0.16 * intensity}), 0 0 4px rgba(0,102,255,${0.08 * intensity})`
+                : "0 1px 2px 0 rgb(0 0 0 / 0.05)",
+              transform: `scale(${1 + 0.03 * intensity})`,
+              transition: "border-color 0.2s ease-out, box-shadow 0.2s ease-out, transform 0.2s ease-out",
+            }}
+          >
+            <Check className="h-3.5 w-3.5 shrink-0 text-vyllo" />
+            {parts ? (
+              <span className="block">
+                <span>{parts[0]}</span>
+                <br />
+                <span>{parts[1]}</span>
+              </span>
+            ) : (
+              item
+            )}
+          </motion.span>
+        )
+      })}
+    </motion.div>
   )
 }
 
@@ -160,30 +239,7 @@ export function Pricing() {
           </div>
         </Reveal>
 
-        <Reveal delay={0.15}>
-          <div className="mx-auto mt-14 flex max-w-3xl flex-wrap items-center justify-center gap-2.5">
-            {INCLUDED.map((item) => {
-              const parts = item.includes(" | ") ? item.split(" | ") : null
-              return (
-                <span
-                  key={item}
-                  className="inline-flex items-center gap-2 rounded-full border border-neutral-200/80 bg-white/80 px-4 py-2 text-center text-sm text-neutral-600 shadow-sm backdrop-blur-sm transition-all hover:border-vyllo/30 hover:shadow-md"
-                >
-                  <Check className="h-3.5 w-3.5 shrink-0 text-vyllo" />
-                  {parts ? (
-                    <span className="block">
-                      <span>{parts[0]}</span>
-                      <br />
-                      <span>{parts[1]}</span>
-                    </span>
-                  ) : (
-                    item
-                  )}
-                </span>
-              )
-            })}
-          </div>
-        </Reveal>
+        <AnimatedBadges />
 
         <Reveal delay={0.2}>
           <Stats />
