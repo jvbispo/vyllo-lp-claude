@@ -85,6 +85,18 @@ body {
   50% { transform: translateX(400%); }
 }
 
+/* Strikethrough loop animation for testimonials headline */
+@keyframes strikethrough-line {
+  0%, 12% { transform: scaleX(0); }
+  22%, 70% { transform: scaleX(1); }
+  82%, 100% { transform: scaleX(0); }
+}
+@keyframes strikethrough-text {
+  0%, 18% { color: white; }
+  28%, 70% { color: rgba(255, 255, 255, 0.3); }
+  82%, 100% { color: white; }
+}
+
 /* Agenda appointment positioning — responsive row height */
 .agenda-apt {
   --row-h: 32px;

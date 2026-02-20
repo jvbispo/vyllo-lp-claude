@@ -59,7 +59,14 @@ export function Testimonials() {
           <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Quem usa, não volta pra planilha, papel ou{" "}
             <span className="relative inline-block">
-              <span className="text-white/30 line-through decoration-red-400/70 decoration-2">sistema complicado</span>
+              <span style={{ animation: "strikethrough-text 5s ease-in-out infinite" }}>
+                sistema complicado
+              </span>
+              <span
+                className="pointer-events-none absolute left-0 h-[2px] w-full origin-left rounded-full bg-red-400/80"
+                style={{ top: "calc(50% - 1px)", transform: "scaleX(0)", animation: "strikethrough-line 5s ease-in-out infinite" }}
+                aria-hidden="true"
+              />
             </span>
           </h2>
         </Reveal>
