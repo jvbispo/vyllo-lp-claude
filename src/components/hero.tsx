@@ -1,7 +1,7 @@
 "use client"
 
 import { useState, useEffect } from "react"
-import { motion, useInView, useScroll, useTransform, AnimatePresence } from "framer-motion"
+import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ArrowRight, Calendar, FileText, DollarSign, Home, Users, Settings, TrendingUp, TrendingDown } from "lucide-react"
 import Image from "next/image"
 import { useRef, type ReactNode } from "react"
@@ -49,7 +49,7 @@ const APPOINTMENTS = [
 
 function AgendaView() {
   return (
-    <div className="flex h-full flex-col">
+    <div className="flex h-full min-w-0 flex-col overflow-hidden">
       {/* Header with weekdays */}
       <div className="flex border-b border-neutral-100 pb-2">
         <div className="w-10 shrink-0" />
@@ -139,7 +139,7 @@ const TRANSACTIONS = [
 
 function FinanceiroView() {
   return (
-    <div className="flex h-full flex-col gap-3">
+    <div className="flex h-full min-w-0 flex-col gap-3 overflow-hidden">
       {/* Metric cards */}
       <div className="grid grid-cols-2 gap-2 md:grid-cols-4">
         {METRIC_CARDS.map((m, i) => (
@@ -237,7 +237,7 @@ const TIMELINE_ITEMS = [
 
 function ProntuarioView() {
   return (
-    <div className="flex h-full flex-col gap-3">
+    <div className="flex h-full min-w-0 flex-col gap-3 overflow-hidden">
       {/* Patient header */}
       <motion.div
         className="flex items-center gap-2.5 rounded-lg border border-neutral-100 bg-white p-2.5 md:p-3"
@@ -275,7 +275,7 @@ function ProntuarioView() {
         </div>
         <div className="space-y-1.5">
           <motion.p
-            className="text-[8px] leading-relaxed text-neutral-500 md:text-[9px]"
+            className="line-clamp-3 text-[8px] leading-relaxed text-neutral-500 md:text-[9px]"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.25, duration: 0.3 }}
@@ -410,8 +410,8 @@ function InteractiveDashboard() {
       </motion.div>
 
       {/* Dashboard content */}
-      <div className="relative bg-gradient-to-b from-[#f8f9fa] to-white" style={{ minHeight: "340px" }}>
-        <div className="flex h-full" style={{ minHeight: "340px" }}>
+      <div className="relative h-[340px] overflow-hidden bg-gradient-to-b from-[#f8f9fa] to-white">
+        <div className="flex h-full">
           {/* Sidebar — desktop only */}
           <motion.div
             className="hidden w-40 shrink-0 border-r border-neutral-100 bg-white p-3 md:block lg:w-44"
@@ -512,7 +512,7 @@ function InteractiveDashboard() {
                 animate={{ opacity: 1, y: 0 }}
                 exit={{ opacity: 0, y: -8 }}
                 transition={{ duration: 0.25, ease }}
-                className="h-[270px] md:h-[280px]"
+                className="h-[270px] overflow-hidden md:h-[280px]"
               >
                 {activeView === "agenda" && <AgendaView />}
                 {activeView === "financeiro" && <FinanceiroView />}
@@ -526,39 +526,17 @@ function InteractiveDashboard() {
   )
 }
 
-/* ── Scroll-linked 3D Perspective ─────────────────────── */
+/* ── Dashboard Wrapper ─────────────────────────────── */
 
-function PerspectiveDashboard({ children }: { children: ReactNode }) {
-  const ref = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"],
-  })
-
-  const rotateX = useTransform(scrollYProgress, [0, 0.35], [4, 0])
-  const scale = useTransform(scrollYProgress, [0, 0.35], [0.98, 1])
-  const opacity = useTransform(scrollYProgress, [0, 0.15], [0.7, 1])
-
+function DashboardWrapper({ children }: { children: ReactNode }) {
   return (
     <motion.div
-      ref={ref}
-      initial={{ opacity: 0, y: 32 }}
+      initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 0.9, delay: 0.25, ease }}
-      className="relative mt-20"
-      style={{ perspective: "2000px" }}
+      transition={{ duration: 0.7, delay: 0.25, ease }}
+      className="relative mt-6 xl:mt-0"
     >
-      <motion.div
-        style={{
-          rotateX,
-          scale,
-          opacity,
-          transformOrigin: "center bottom",
-          willChange: "transform",
-        }}
-      >
-        {children}
-      </motion.div>
+      {children}
     </motion.div>
   )
 }
@@ -567,7 +545,7 @@ function PerspectiveDashboard({ children }: { children: ReactNode }) {
 
 export function Hero() {
   return (
-    <section className="relative overflow-hidden pt-28 pb-20 md:pt-40 md:pb-32">
+    <section className="relative overflow-hidden pt-20 pb-20 md:pt-30 md:pb-32">
       {/* Animated beam line at top */}
       <div className="pointer-events-none absolute top-0 left-0 right-0 h-px overflow-hidden">
         <div className="h-full w-1/3 bg-gradient-to-r from-transparent via-vyllo/50 to-transparent animate-[beam_4s_ease-in-out_infinite]" />
@@ -589,13 +567,14 @@ export function Hero() {
         }}
       />
 
-      <div className="relative mx-auto max-w-5xl px-6">
-        <div className="max-w-3xl">
+      <div className="relative mx-auto max-w-5xl px-6 grid grid-cols-1 xl:max-w-7xl xl:grid-cols-[5fr_7fr] xl:gap-12 xl:items-start">
+        {/* 1) Headline + parágrafo — mobile: primeiro; desktop: coluna esquerda, topo */}
+        <div className="min-w-0 xl:col-start-1 xl:row-start-1">
           <motion.h1
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, delay: 0.07, ease }}
-            className="mt-6 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-6xl"
+            className="mt-6 md:mt-4 text-4xl font-bold leading-[1.08] tracking-tight text-neutral-900 sm:text-5xl md:text-5xl"
           >
             Quanto dinheiro seu consultório{" "}
             <br className="hidden sm:block" />
@@ -608,52 +587,58 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-500"
           >
-            67% dos dentistas autônomos no Brasil não usam nenhum sistema de gestão. Dos que usam, quase nenhum sabe o lucro real de cada procedimento. O Vyllo resolve os dois problemas, e custa menos que um kit de resina.
+            67% dos dentistas autônomos no Brasil não usam nenhum sistema de gestão. Dos que usam, quase nenhum sabe o lucro real de cada procedimento.
           </motion.p>
-
-          <motion.div
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 0.17, ease }}
-            className="mt-10 flex flex-col gap-3"
-          >
-            <div className="relative inline-flex">
-              <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg transition-opacity group-hover:opacity-30" />
-              <a
-                href={`${APP_URL}/auth/registro`}
-                className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
-              >
-                Testar grátis por 15 dias
-                <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
-              </a>
-            </div>
-            <div className="flex flex-wrap items-center gap-x-3 gap-y-4 sm:gap-y-3">
-              <span className="text-sm text-neutral-500">
-                Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.
-              </span>
-              <a
-                href={CALC_URL}
-                className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200/80 bg-transparent px-3 py-1.5 text-xs font-medium text-neutral-500 transition-colors hover:border-vyllo/30 hover:text-vyllo"
-              >
-                Ir para calculadora de Lucro
-                <ArrowRight className="h-3 w-3" />
-              </a>
-            </div>
-            <span className="text-sm text-neutral-400">
-              Sem cartão · 200 confirmações WhatsApp inclusas · Pronto em 5 min
-            </span>
-          </motion.div>
         </div>
 
-        {/* Product screenshot with scroll-linked 3D perspective */}
-        <PerspectiveDashboard>
+        {/* 2) Dashboard — mobile: entre parágrafo e botão; desktop: coluna direita */}
+        <div className="mt-4 min-w-0 overflow-hidden xl:col-start-2 xl:row-start-1 xl:row-span-2 xl:mt-0">
+        <DashboardWrapper>
           {/* Glow behind mockup */}
           <div className="absolute -inset-12 rounded-3xl bg-[radial-gradient(ellipse_60%_50%_at_50%_40%,rgba(0,102,255,0.18)_0%,transparent_65%)] blur-xl" />
 
           <div className="relative">
             <InteractiveDashboard />
           </div>
-        </PerspectiveDashboard>
+        </DashboardWrapper>
+        </div>
+
+        {/* 3) CTAs — mobile: depois do dashboard; desktop: coluna esquerda, abaixo do texto */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.17, ease }}
+          className="mt-4 flex min-w-0 flex-col gap-3 md:mt-10 xl:col-start-1 xl:row-start-2 xl:mt-2"
+        >
+          <div className="relative inline-flex">
+            <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg transition-opacity group-hover:opacity-30" />
+            <a
+              href={`${APP_URL}/auth/registro`}
+              className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
+            >
+              Testar grátis por 15 dias
+              <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
+            </a>
+          </div>
+          <div className="flex flex-wrap items-center gap-x-3 gap-y-4 sm:gap-y-3 md:mt-12">
+            <span className="text-md font-medium text-neutral-800">
+              A Vyllo resolve os dois problemas, e custa <span className="text-vyllo">menos que um kit de resina.</span>
+            </span>
+            <span className="text-sm text-neutral-500">
+              Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.
+            </span>
+            <a
+              href={CALC_URL}
+              className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200/80 bg-transparent px-3 py-1.5 text-xs font-medium text-neutral-500 transition-colors hover:border-vyllo/30 hover:text-vyllo"
+            >
+              Ir para calculadora de Lucro
+              <ArrowRight className="h-3 w-3" />
+            </a>
+          </div>
+          <span className="text-sm text-neutral-400">
+            Sem cartão · 200 confirmações WhatsApp inclusas · Pronto em 5 min
+          </span>
+        </motion.div>
       </div>
     </section>
   )
