@@ -4,12 +4,11 @@ import { useState, useEffect, useRef } from "react"
 import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Reveal, CountUp } from "./motion"
 import { Check, ArrowRight } from "lucide-react"
+import { useRefParam } from "@/hooks/use-ref-param"
 
 const BADGE_STAGGER_DELAY = 0.05
 const SPOTLIGHT_LOOP_MS = 46000
 const SPOTLIGHT_TICK_MS = 50
-
-const APP_URL = "https://app.vyllo.com.br"
 
 type Cycle = "monthly" | "semiannual" | "annual"
 
@@ -173,6 +172,7 @@ function AnimatedBadges() {
 export function Pricing() {
   const [cycle, setCycle] = useState<Cycle>("annual")
   const selected = CYCLES.find((c) => c.id === cycle)!
+  const { registroUrl } = useRefParam()
 
   return (
     <section id="precos" className="relative overflow-hidden py-24 md:py-36" style={{
@@ -225,7 +225,7 @@ export function Pricing() {
               <div className="relative inline-flex">
                 <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg" />
                 <a
-                  href={`${APP_URL}/auth/registro`}
+                  href={registroUrl}
                   className="group relative inline-flex items-center gap-2 rounded-lg bg-vyllo px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
                 >
                   Testar grátis por 15 dias

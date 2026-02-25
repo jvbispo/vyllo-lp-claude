@@ -5,9 +5,7 @@ import { motion, useInView, AnimatePresence } from "framer-motion"
 import { ArrowRight, Calendar, FileText, DollarSign, Home, Users, Settings, TrendingUp, TrendingDown } from "lucide-react"
 import Image from "next/image"
 import { useRef, type ReactNode } from "react"
-
-const APP_URL = "https://app.vyllo.com.br"
-const CALC_URL = "https://calculadora.vyllo.com.br"
+import { useRefParam } from "@/hooks/use-ref-param"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
@@ -544,6 +542,8 @@ function DashboardWrapper({ children }: { children: ReactNode }) {
 /* ── Hero Section ───────────────────────────────────── */
 
 export function Hero() {
+  const { registroUrl, calcUrl } = useRefParam()
+
   return (
     <section className="relative overflow-hidden pt-20 pb-20 md:pt-30 md:pb-32">
       {/* Animated beam line at top */}
@@ -613,7 +613,7 @@ export function Hero() {
           <div className="relative inline-flex">
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg transition-opacity group-hover:opacity-30" />
             <a
-              href={`${APP_URL}/auth/registro`}
+              href={registroUrl}
               className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
             >
               Testar grátis por 15 dias
@@ -628,7 +628,7 @@ export function Hero() {
               Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.
             </span>
             <a
-              href={CALC_URL}
+              href={calcUrl}
               className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200/80 bg-transparent px-3 py-1.5 text-xs font-medium text-neutral-500 transition-colors hover:border-vyllo/30 hover:text-vyllo"
             >
               Ir para calculadora de Lucro

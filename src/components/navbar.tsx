@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/cn"
 import { Menu, X } from "lucide-react"
+import { useRefParam } from "@/hooks/use-ref-param"
 
 const NAV_LINKS = [
   { href: "#funcionalidades", label: "Funcionalidades" },
@@ -12,13 +13,10 @@ const NAV_LINKS = [
   { href: "#faq", label: "FAQ" },
 ]
 
-const CALC_URL = "https://calculadora.vyllo.com.br"
-
-const APP_URL = "https://app.vyllo.com.br"
-
 export function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [mobileOpen, setMobileOpen] = useState(false)
+  const { registroUrl, calcUrl, loginUrl } = useRefParam()
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 20)
@@ -54,19 +52,19 @@ export function Navbar() {
 
         <div className="hidden items-center gap-4 md:flex">
           <a
-            href={CALC_URL}
+            href={calcUrl}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
             Calcule seu Lucro Real →
           </a>
           <a
-            href={`${APP_URL}/auth/registro`}
+            href={registroUrl}
             className="rounded-lg bg-vyllo px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0052cc]"
           >
             Testar grátis 15 dias
           </a>
           <a
-            href={`${APP_URL}/auth/login`}
+            href={loginUrl}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
             Login
@@ -97,21 +95,21 @@ export function Navbar() {
             ))}
             <hr className="border-neutral-100" />
             <a
-              href={CALC_URL}
+              href={calcUrl}
               className="text-base text-neutral-500"
               onClick={() => setMobileOpen(false)}
             >
               Calcule seu Lucro Real →
             </a>
             <a
-              href={`${APP_URL}/auth/registro`}
+              href={registroUrl}
               className="rounded-lg bg-vyllo px-4 py-3 text-center text-base font-medium text-white"
               onClick={() => setMobileOpen(false)}
             >
               Testar grátis 15 dias
             </a>
             <a
-              href={`${APP_URL}/auth/login`}
+              href={loginUrl}
               className="text-base text-neutral-500"
               onClick={() => setMobileOpen(false)}
             >

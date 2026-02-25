@@ -1,10 +1,11 @@
+"use client"
+
 import { Reveal } from "./motion"
 import { ArrowRight } from "lucide-react"
-
-const APP_URL = "https://app.vyllo.com.br"
-const CALC_URL = "https://calculadora.vyllo.com.br"
+import { useRefParam } from "@/hooks/use-ref-param"
 
 export function Cta() {
+  const { registroUrl, calcUrl } = useRefParam()
   return (
     <section className="relative overflow-hidden bg-[#0a0f1a] py-24 md:py-32">
       {/* Grid lines with radial fade mask */}
@@ -45,7 +46,7 @@ export function Cta() {
             <div className="relative mt-8 inline-flex">
               <div className="absolute -inset-2 rounded-xl bg-white/20 blur-xl" />
               <a
-                href={`${APP_URL}/auth/registro`}
+                href={registroUrl}
                 className="group relative inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-neutral-900 shadow-lg shadow-white/10 transition-all hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/15 active:scale-[0.98]"
               >
                 Começar meu teste grátis
@@ -53,7 +54,7 @@ export function Cta() {
               </a>
             </div>
             <a
-              href={CALC_URL}
+              href={calcUrl}
               className="mt-4 text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
             >
               Só quer o número? Calculadora de Lucro por Procedimento — grátis →
