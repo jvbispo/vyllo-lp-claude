@@ -1,3 +1,4 @@
+import { Suspense } from "react"
 import dynamic from "next/dynamic"
 import { Navbar } from "@/components/navbar"
 import { Hero } from "@/components/hero"
@@ -172,19 +173,21 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaOrg.faq) }}
       />
-      <Navbar />
-      <main>
-        <Hero />
-        <Workflow />
-        <Features />
-        <Testimonials />
-        <Comparison />
-        <ForYou />
-        <Pricing />
-        <Faq />
-        <Cta />
-      </main>
-      <Footer />
+      <Suspense>
+        <Navbar />
+        <main>
+          <Hero />
+          <Workflow />
+          <Features />
+          <Testimonials />
+          <Comparison />
+          <ForYou />
+          <Pricing />
+          <Faq />
+          <Cta />
+        </main>
+        <Footer />
+      </Suspense>
     </>
   )
 }
