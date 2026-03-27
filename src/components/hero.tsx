@@ -587,7 +587,8 @@ export function Hero() {
             transition={{ duration: 0.6, delay: 0.12, ease }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-neutral-500"
           >
-            67% dos dentistas autônomos no Brasil não usam nenhum sistema de gestão. Dos que usam, quase nenhum sabe o lucro real de cada procedimento.
+            Você atende. A Vyllo anota, organiza e mostra o lucro.
+            Agenda, prontuário e financeiro conectados — uma ação alimenta a próxima. Sem digitar duas vezes. Sem planilha. Sem achismo.
           </motion.p>
         </div>
 
@@ -616,13 +617,13 @@ export function Hero() {
               href={registroUrl}
               className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
             >
-              Testar grátis por 15 dias
+              Testar grátis por 15 dias — sem cartão
               <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
             </a>
           </div>
           <div className="flex flex-wrap items-center gap-x-3 gap-y-4 sm:gap-y-3 md:mt-12">
-            <span className="text-md font-medium text-neutral-800">
-              A Vyllo resolve os dois problemas, e custa <span className="text-vyllo">menos que um kit de resina.</span>
+            <span className="text-sm text-neutral-500">
+              Sem compromisso. Cancela quando quiser.
             </span>
             <span className="text-sm text-neutral-500">
               Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.

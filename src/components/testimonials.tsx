@@ -5,7 +5,7 @@ const TESTIMONIALS = [
   {
     name: "Dra. Larissa Luduvice",
     role: "Periodontista",
-    text: "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro. O suporte é de fácil acesso. Só agradecer à Vyllo 🫶🏻",
+    text: "Eu usava três coisas diferentes: uma agenda no Google, prontuário num sistema separado e uma planilha pra financeiro. No final do mês eu passava horas tentando entender o que tinha acontecido. Com a Vyllo, quando eu termino o atendimento, já aparece no financeiro. Parece coisa pequena, mas mudou completamente como eu encerro o meu dia.",
     accent: "#60a5fa",
     image: "/dra-larissa-luduvice.jpg",
   },
@@ -112,6 +112,14 @@ export function Testimonials() {
             </RevealItem>
           ))}
         </RevealStagger>
+
+        <Reveal delay={0.2}>
+          <p className="mt-10 text-center text-sm text-white/40">
+            Dentistas que usam a Vyllo param de usar planilha em, em média, menos de uma semana.
+            <br />
+            Não porque são obrigados. Porque não faz mais sentido voltar.
+          </p>
+        </Reveal>
       </div>
     </section>
   )

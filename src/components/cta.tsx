@@ -1,11 +1,11 @@
 "use client"
 
 import { Reveal } from "./motion"
-import { ArrowRight } from "lucide-react"
+import { ArrowRight, Check } from "lucide-react"
 import { useRefParam } from "@/hooks/use-ref-param"
 
 export function Cta() {
-  const { registroUrl, calcUrl } = useRefParam()
+  const { registroUrl } = useRefParam()
   return (
     <section className="relative overflow-hidden bg-[#0a0f1a] py-24 md:py-32">
       {/* Grid lines with radial fade mask */}
@@ -34,31 +34,62 @@ export function Cta() {
       {/* Gradient line divider at top */}
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/30 to-transparent" />
 
-      <div className="relative mx-auto max-w-5xl px-6">
+      <div className="relative mx-auto max-w-3xl px-6">
         <Reveal>
           <div className="flex flex-col items-center text-center">
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
-              Seu consultório está lucrando, ou você está pagando pra trabalhar?
+              Você estudou anos pra cuidar de dente.
             </h2>
-            <p className="mt-4 max-w-md text-base text-neutral-400">
-              15 dias grátis. Sem cartão. Sem risco. Só a verdade sobre seus números.
+            <p className="mt-2 text-2xl font-bold tracking-tight text-white/60 sm:text-3xl">
+              Não deveria passar horas tentando entender suas próprias finanças.
             </p>
-            <div className="relative mt-8 inline-flex">
+
+            <div className="mt-8 max-w-lg text-base leading-relaxed text-neutral-400">
+              <p>
+                Todo mês que passa com a planilha é mais um mês sem saber o lucro real.
+                Mais um paciente que pagou e você não lançou.
+                Mais um procedimento feito sem saber se valia a pena.
+              </p>
+              <p className="mt-4">
+                A Vyllo não resolve tudo. Mas resolve isso.
+              </p>
+              <p className="mt-2 text-white/60 font-medium">
+                Agenda, prontuário e financeiro que conversam entre si — automático, desde o primeiro atendimento.
+              </p>
+            </div>
+
+            <div className="relative mt-10 inline-flex">
               <div className="absolute -inset-2 rounded-xl bg-white/20 blur-xl" />
               <a
                 href={registroUrl}
-                className="group relative inline-flex items-center gap-2 rounded-lg bg-white px-6 py-3 text-sm font-medium text-neutral-900 shadow-lg shadow-white/10 transition-all hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/15 active:scale-[0.98]"
+                className="group relative inline-flex items-center gap-2 rounded-lg bg-white px-8 py-4 text-base font-medium text-neutral-900 shadow-lg shadow-white/10 transition-all hover:bg-neutral-100 hover:shadow-xl hover:shadow-white/15 active:scale-[0.98]"
               >
-                Começar meu teste grátis
+                Começar agora — grátis por 15 dias
                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-0.5" />
               </a>
             </div>
-            <a
-              href={calcUrl}
-              className="mt-4 text-sm text-neutral-500 hover:text-neutral-300 transition-colors"
-            >
-              Só quer o número? Calculadora de Lucro por Procedimento — grátis →
-            </a>
+
+            <p className="mt-4 text-sm text-neutral-500">
+              Sem cartão de crédito. Sem contrato. Cancela quando quiser.
+            </p>
+            <p className="mt-1 text-sm text-amber-500/80">
+              Preço de lançamento: R$63,90/mês — trava esse valor ao assinar hoje.
+            </p>
+
+            {/* Trust badges */}
+            <div className="mt-10 flex flex-wrap items-center justify-center gap-x-6 gap-y-2">
+              {[
+                "Feita pra dentista autônomo",
+                "Suporte humano incluso",
+                "Seus dados são seus — exporta quando quiser",
+                "Nota fiscal emitida todo mês",
+              ].map((item) => (
+                <span key={item} className="inline-flex items-center gap-1.5 text-xs text-neutral-500">
+                  <Check className="h-3 w-3 text-emerald-400" />
+                  {item}
+                </span>
+              ))}
+            </div>
           </div>
         </Reveal>
       </div>

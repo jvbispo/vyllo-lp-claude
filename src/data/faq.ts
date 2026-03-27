@@ -1,42 +1,42 @@
 export const FAQS = [
   {
-    question: "Serve pra quem atende em mais de um consultório?",
+    question: "Parece complicado de implantar. Vou ter que treinar minha equipe?",
     answer:
-      "Sim. Cadastre múltiplos locais, cada um com procedimentos, preços e convênios próprios. Agenda e financeiro consolidam tudo.",
+      "Não. A Vyllo foi feita pra funcionar do primeiro dia — sem treinamento, sem manual, sem onboarding de duas semanas. A maioria dos usuários configura tudo em menos de 30 minutos. E se travar em alguma coisa, o suporte responde de verdade (não é FAQ automático).",
   },
   {
-    question: "Funciona no celular?",
+    question: "Uso planilha há anos. Por que mudar agora?",
     answer:
-      "Sim. 100% no celular e também no computador. A maioria dos nossos dentistas usa no celular entre pacientes.",
+      "A planilha funciona pra registrar. Mas ela não te avisa quando o paciente não pagou. Não te mostra qual procedimento dá mais lucro. Não integra com a agenda. Não registra automaticamente quando você termina um atendimento. A pergunta não é \"a planilha funciona?\". É \"o quanto de dinheiro está escapando porque a planilha não conecta as coisas?\"",
+  },
+  {
+    question: "E se eu não gostar? Fico preso?",
+    answer:
+      "Não. 15 dias grátis sem cartão. Se decidir assinar e mudar de ideia depois, cancela em 2 cliques, sem ligar pra ninguém, sem multa. Seus dados continuam disponíveis pra exportar.",
+  },
+  {
+    question: "Funciona pra quem tem convênio?",
+    answer:
+      "Você consegue registrar recebimentos de convênio no financeiro. Mas a Vyllo ainda não tem integração automática com operadoras de grande porte. Se você trabalha principalmente com convênio, recomendamos verificar se atende a sua realidade no trial.",
+  },
+  {
+    question: "E se meu paciente tiver plano de tratamento longo — ortodontia, implante?",
+    answer:
+      "Esse é exatamente o cenário que a Vyllo resolve bem. Você cria o plano com todas as sessões, vincula os pagamentos a cada etapa e acompanha quanto foi recebido, quanto falta e como está o histórico clínico — tudo num lugar só.",
+  },
+  {
+    question: "Tem contrato? Preciso assinar por 12 meses?",
+    answer:
+      "Não. Mensal, sem fidelidade. Você paga mês a mês e cancela quando quiser.",
   },
   {
     question: "Meus dados ficam seguros?",
     answer:
-      "Criptografia, armazenamento AWS, LGPD. Mesmo padrão de bancos digitais.",
+      "Sim. Prontuário tem timeline com versionamento — você consegue ver o histórico de cada alteração. Isso também serve como segurança jurídica pro seu consultório. Dados armazenados em servidor seguro, backup automático.",
   },
   {
-    question: "Posso cancelar quando quiser?",
+    question: "A Vyllo tem app no celular?",
     answer:
-      "Sim. Sem multa, sem ligar, sem \"reunião de retenção\". Você clica em cancelar e acabou.",
-  },
-  {
-    question: "O que são as 200 confirmações?",
-    answer:
-      "Todo mês você tem 200 mensagens automáticas de confirmação de consulta via WhatsApp. Para consultórios autônomos, cobre tranquilamente o mês.",
-  },
-  {
-    question: "Já uso outro sistema. E agora?",
-    answer:
-      "Teste 15 dias sem cancelar o outro. Compare na prática. Se preferir a Vyllo, a gente te ajuda na migração.",
-  },
-  {
-    question: "E depois dos 15 dias?",
-    answer:
-      "Você decide se assina. Sem cobrança automática. Se não assinar, perde as features premium mas mantém a Calculadora de Lucro pra sempre.",
-  },
-  {
-    question: "Vai ter inteligência artificial?",
-    answer:
-      "Sim. Estamos construindo uma IA que agenda, confirma e responde seus pacientes no WhatsApp 24/7. Quem assina agora terá acesso prioritário e condições que não vamos repetir.",
+      "Funciona no navegador do celular. Você acessa de qualquer dispositivo sem instalar nada.",
   },
 ] as const

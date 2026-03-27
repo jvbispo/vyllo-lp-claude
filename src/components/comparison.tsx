@@ -6,26 +6,23 @@ type CellValue = true | false | "partial" | string
 
 const ROWS: {
   feature: string
+  planilha: CellValue
+  genericos: CellValue
   vyllo: CellValue
-  tradicional: CellValue
-  economico: CellValue
-  fintech: CellValue
-  grandes: CellValue
+  highlight?: boolean
 }[] = [
-  { feature: "Preço/mês", vyllo: "R$79,90", tradicional: "R$139+", economico: "R$90+", fintech: "R$120+", grandes: "R$150+" },
-  { feature: "Agenda visual", vyllo: true, tradicional: true, economico: true, fintech: true, grandes: true },
-  { feature: "Prontuário completo", vyllo: true, tradicional: true, economico: true, fintech: true, grandes: true },
-  { feature: "Odontograma multifaces", vyllo: true, tradicional: "Básico", economico: "Básico", fintech: "Básico", grandes: "Avançado" },
-  { feature: "Plano de tratamento", vyllo: true, tradicional: true, economico: true, fintech: true, grandes: true },
-  { feature: "Anamnese personalizável", vyllo: true, tradicional: true, economico: false, fintech: true, grandes: true },
-  { feature: "Fotos antes/depois", vyllo: true, tradicional: true, economico: false, fintech: false, grandes: true },
-  { feature: "Dashboard financeiro", vyllo: true, tradicional: "Básico", economico: "Básico", fintech: true, grandes: true },
-  { feature: "Lucro real por procedimento", vyllo: "✅ Exclusivo", tradicional: false, economico: false, fintech: false, grandes: false },
-  { feature: "WhatsApp automático incluso", vyllo: "✅ 200/mês", tradicional: "Pago à parte", economico: "Cobra por msg", fintech: true, grandes: true },
-  { feature: "App mobile que funciona", vyllo: true, tradicional: true, economico: true, fintech: "⚠ Nota 3.0", grandes: true },
-  { feature: "Cancela sem drama", vyllo: true, tradicional: "partial", economico: true, fintech: false, grandes: false },
-  { feature: "Trial sem cartão", vyllo: "15 dias", tradicional: "7 dias", economico: "7 dias", fintech: "7 dias", grandes: "Só demo" },
-  { feature: "Feito para autônomos", vyllo: true, tradicional: false, economico: false, fintech: false, grandes: false },
+  { feature: "Agenda com status em tempo real", planilha: false, genericos: "Básico", vyllo: "7 status diferentes" },
+  { feature: "Confirmação automática D-1 WhatsApp", planilha: false, genericos: "Alguns têm", vyllo: true },
+  { feature: "Prontuário digital vinculado ao paciente", planilha: false, genericos: true, vyllo: "Com timeline e versionamento" },
+  { feature: "Plano de tratamento com sessões", planilha: false, genericos: "Parcial", vyllo: "Ortodontia, implante, casos complexos" },
+  { feature: "Agenda → prontuário → financeiro automático", planilha: false, genericos: false, vyllo: "Só a Vyllo", highlight: true },
+  { feature: "Contas a receber por paciente e por tratamento", planilha: false, genericos: "partial", vyllo: true },
+  { feature: "Pagamento vinculado ao tratamento", planilha: false, genericos: false, vyllo: true },
+  { feature: "Despesas recorrentes automáticas", planilha: false, genericos: false, vyllo: true },
+  { feature: "Relatório de lucro por procedimento", planilha: false, genericos: false, vyllo: "Exclusivo entre sistemas para autônomos" },
+  { feature: "Meta mensal com acompanhamento", planilha: false, genericos: false, vyllo: true },
+  { feature: "Feito para dentista autônomo (1-3 cadeiras)", planilha: "partial", genericos: "Pra clínica grande", vyllo: true },
+  { feature: "Preço", planilha: '"Grátis" (custa seu tempo)', genericos: "R$150-400/mês", vyllo: "R$63,90/mês" },
 ]
 
 function CellIcon({ value }: { value: CellValue }) {
@@ -60,11 +57,8 @@ export function Comparison() {
       <div className="relative mx-auto max-w-5xl px-6">
         <Reveal>
           <h2 className="text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl">
-            Compare. A gente não tem medo de tabela.
+            Vyllo vs. o que você provavelmente usa hoje
           </h2>
-          <p className="mt-3 text-base text-neutral-500">
-            Pesquisamos os preços e funcionalidades dos principais sistemas do mercado. Tiramos os nomes, mas você provavelmente reconhece.
-          </p>
         </Reveal>
 
         <Reveal delay={0.1}>
@@ -75,23 +69,17 @@ export function Comparison() {
                   <th className="py-2 px-2 text-left text-xs font-medium text-neutral-400 md:py-3.5 md:px-5 md:text-sm">
                     Funcionalidade
                   </th>
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
+                    Planilha / Papel
+                  </th>
+                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
+                    Sistemas genéricos
+                  </th>
                   <th className="py-2 px-1.5 text-center md:py-3.5 md:px-4">
                     <span className="inline-flex items-center justify-center gap-1.5 text-xs font-semibold text-vyllo md:gap-2 md:text-sm">
                       <Image src="/o%20(4).png" alt="" width={20} height={20} className="h-4 w-4 shrink-0 md:h-5 md:w-5" aria-hidden />
                       Vyllo
                     </span>
-                  </th>
-                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
-                    O Tradicional
-                  </th>
-                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
-                    O Econômico
-                  </th>
-                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
-                    O da Fintech
-                  </th>
-                  <th className="py-2 px-1.5 text-center text-xs text-neutral-400 md:py-3.5 md:px-4 md:text-sm">
-                    O das Grandes Clínicas
                   </th>
                 </tr>
               </thead>
@@ -99,34 +87,24 @@ export function Comparison() {
                 {ROWS.map((row, i) => (
                   <tr
                     key={row.feature}
-                    className={i < ROWS.length - 1 ? "border-b border-neutral-50" : ""}
+                    className={`${i < ROWS.length - 1 ? "border-b border-neutral-50" : ""} ${row.highlight ? "bg-vyllo/[0.04]" : ""}`}
                   >
-                    <td className="py-2 px-2 text-xs text-neutral-700 md:py-3 md:px-5 md:text-sm">
+                    <td className={`py-2 px-2 text-xs text-neutral-700 md:py-3 md:px-5 md:text-sm ${row.highlight ? "font-semibold" : ""}`}>
                       {row.feature}
+                    </td>
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
+                      <div className="flex justify-center">
+                        <CellIcon value={row.planilha} />
+                      </div>
+                    </td>
+                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
+                      <div className="flex justify-center">
+                        <CellIcon value={row.genericos} />
+                      </div>
                     </td>
                     <td className="py-2 px-1.5 text-center bg-vyllo/[0.02] md:py-3 md:px-4">
                       <div className="flex justify-center">
                         <CellIcon value={row.vyllo} />
-                      </div>
-                    </td>
-                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
-                      <div className="flex justify-center">
-                        <CellIcon value={row.tradicional} />
-                      </div>
-                    </td>
-                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
-                      <div className="flex justify-center">
-                        <CellIcon value={row.economico} />
-                      </div>
-                    </td>
-                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
-                      <div className="flex justify-center">
-                        <CellIcon value={row.fintech} />
-                      </div>
-                    </td>
-                    <td className="py-2 px-1.5 text-center md:py-3 md:px-4">
-                      <div className="flex justify-center">
-                        <CellIcon value={row.grandes} />
                       </div>
                     </td>
                   </tr>
@@ -138,12 +116,10 @@ export function Comparison() {
 
         <Reveal delay={0.15}>
           <div className="mt-10 rounded-xl border border-vyllo/20 bg-vyllo/5 px-6 py-5">
-            <ul className="list-none space-y-2 text-sm leading-relaxed text-vyllo">
-              <li>Não estamos contra ninguém.</li>
-              <li>Mas achamos que o dentista que trabalha sozinho não deveria pagar preço de clínica grande.</li>
-              <li>Nem ficar preso em contrato.</li>
-              <li>Nem precisar de reunião pra cancelar.</li>
-            </ul>
+            <p className="text-sm leading-relaxed text-neutral-600">
+              A planilha é grátis. Mas quanto tempo você gasta nela todo mês?
+              Multiplica pelo valor da sua hora. Não é tão grátis assim.
+            </p>
           </div>
         </Reveal>
       </div>

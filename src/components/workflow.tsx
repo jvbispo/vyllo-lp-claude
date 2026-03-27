@@ -2,150 +2,79 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Calendar, Stethoscope, FileText, DollarSign } from "lucide-react"
+import { ClipboardList, DollarSign, FileText, HelpCircle, Smartphone, ArrowLeftRight, Frown } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
-const STEPS: {
+const PAIN_POINTS: {
   icon: LucideIcon
-  label: string
-  description: string
+  text: string
   color: string
 }[] = [
   {
-    icon: DollarSign,
-    label: "O mês foi cheio, mas a conta não fecha",
-    description: "Agenda lotada, 20 pacientes por semana, e no dia 30 você abre o extrato e pensa: cadê o dinheiro? Se você não sabe o custo real de cada procedimento, o faturamento engana. Todo mês.",
+    icon: ClipboardList,
+    text: "Você anota o agendamento numa planilha (ou num caderno mesmo)",
     color: "#60a5fa",
   },
   {
+    icon: DollarSign,
+    text: "Paciente pagou, mas você não atualizou o financeiro ainda",
+    color: "#f59e0b",
+  },
+  {
     icon: FileText,
-    label: "Sua planilha tem mais abas que seus pacientes têm dentes",
-    description: "Você já tentou organizar no Excel. Criou 14 abas, 3 macros e uma fórmula que só funciona na lua cheia. Parou de atualizar em março. Agora controla de cabeça. E de cabeça, ninguém acerta.",
+    text: "Prontuário em papel, ou num sistema que não fala com a agenda",
     color: "#a78bfa",
   },
   {
-    icon: Calendar,
-    label: "Agenda num app, financeiro em outro, prontuário no papel",
-    description: "Google Agenda pra marcar. Caderninho pra anotar. WhatsApp pra confirmar. E no final do dia, nada conversa com nada. Você gasta mais tempo organizando do que atendendo.",
+    icon: HelpCircle,
+    text: "Você tem uma noção de quanto fatura, mas não sabe quanto lucra",
+    color: "#f43f5e",
+  },
+  {
+    icon: Smartphone,
+    text: "Você termina o atendimento e ainda precisa lançar a receita manualmente",
     color: "#34d399",
   },
   {
-    icon: Stethoscope,
-    label: "Você cobra R$280 na restauração e acha que lucra R$230",
-    description: "Depois de material, luva, aluguel proporcional, imposto e tempo de cadeira, seu lucro real pode ser R$40. Ou negativo. Sem essa conta, você está literalmente pagando para trabalhar — e nem sabe.",
+    icon: ArrowLeftRight,
+    text: "Sua agenda, prontuário e financeiro são três sistemas que não conversam entre si",
+    color: "#06b6d4",
+  },
+  {
+    icon: Frown,
+    text: "Você só descobre que o paciente não pagou quando a conta não fecha no mês",
     color: "#fbbf24",
   },
 ]
 
-function Step({
-  step,
+function PainItem({
+  item,
   index,
   inView,
 }: {
-  step: (typeof STEPS)[number]
+  item: (typeof PAIN_POINTS)[number]
   index: number
   inView: boolean
 }) {
   return (
     <motion.div
-      className="flex flex-1 flex-col items-center text-center"
-      initial={{ opacity: 0, y: 20 }}
-      animate={inView ? { opacity: 1, y: 0 } : {}}
-      transition={{ delay: 0.2 + index * 0.15, duration: 0.5, ease }}
-    >
-      {/* Icon circle */}
-      <motion.div
-        className="relative flex h-14 w-14 items-center justify-center rounded-2xl border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-sm"
-        initial={{ scale: 0.5 }}
-        animate={inView ? { scale: 1 } : {}}
-        transition={{ delay: 0.2 + index * 0.15, type: "spring", stiffness: 300, damping: 20 }}
-      >
-        <div
-          className="absolute inset-0 rounded-2xl opacity-20 blur-xl"
-          style={{ backgroundColor: step.color }}
-        />
-        <step.icon className="relative h-6 w-6" style={{ color: step.color }} />
-      </motion.div>
-
-      {/* Step number */}
-      <span className="mt-4 text-[11px] font-semibold tracking-wider text-white/30">0{index + 1}</span>
-      <h3 className="mt-1 text-base font-semibold text-white">{step.label}</h3>
-      <p className="mt-1.5 max-w-[180px] text-sm leading-snug text-white/50">{step.description}</p>
-    </motion.div>
-  )
-}
-
-function Connector({ inView, delay }: { inView: boolean; delay: number }) {
-  return (
-    <div className="hidden w-12 shrink-0 items-center pt-7 md:flex lg:w-16">
-      <div className="relative h-px w-full bg-white/10">
-        <motion.div
-          className="absolute inset-y-0 left-0 bg-gradient-to-r from-white/30 to-white/5"
-          initial={{ width: "0%" }}
-          animate={inView ? { width: "100%" } : {}}
-          transition={{ delay, duration: 0.8, ease }}
-        />
-        <motion.div
-          className="absolute top-1/2 h-1.5 w-1.5 -translate-y-1/2 rounded-full bg-white/40"
-          initial={{ left: "0%", opacity: 0 }}
-          animate={inView ? { left: ["0%", "100%"], opacity: [0, 1, 1, 0] } : {}}
-          transition={{ delay: delay + 0.3, duration: 0.8, ease }}
-        />
-      </div>
-    </div>
-  )
-}
-
-/* Mobile: vertical steps with connecting vertical line */
-function MobileStep({
-  step,
-  index,
-  inView,
-  isLast,
-}: {
-  step: (typeof STEPS)[number]
-  index: number
-  inView: boolean
-  isLast: boolean
-}) {
-  return (
-    <motion.div
-      className="flex gap-4"
+      className="flex items-start gap-4"
       initial={{ opacity: 0, x: -16 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
-      transition={{ delay: 0.2 + index * 0.12, duration: 0.5, ease }}
+      transition={{ delay: 0.15 + index * 0.08, duration: 0.5, ease }}
     >
-      {/* Left: icon + vertical line */}
-      <div className="flex flex-col items-center">
+      <div
+        className="relative flex h-10 w-10 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-sm"
+      >
         <div
-          className="relative flex h-11 w-11 shrink-0 items-center justify-center rounded-xl border border-white/10 bg-white/5 shadow-lg shadow-black/20 backdrop-blur-sm"
-        >
-          <div
-            className="absolute inset-0 rounded-xl opacity-20 blur-lg"
-            style={{ backgroundColor: step.color }}
-          />
-          <step.icon className="relative h-5 w-5" style={{ color: step.color }} />
-        </div>
-        {!isLast && (
-          <div className="relative mt-2 h-full w-px bg-white/10">
-            <motion.div
-              className="absolute inset-x-0 top-0 bg-gradient-to-b from-white/20 to-transparent"
-              initial={{ height: 0 }}
-              animate={inView ? { height: "100%" } : {}}
-              transition={{ delay: 0.4 + index * 0.15, duration: 0.6, ease }}
-            />
-          </div>
-        )}
+          className="absolute inset-0 rounded-xl opacity-20 blur-lg"
+          style={{ backgroundColor: item.color }}
+        />
+        <item.icon className="relative h-5 w-5" style={{ color: item.color }} />
       </div>
-
-      {/* Right: text */}
-      <div className="pb-8">
-        <span className="text-[11px] font-semibold tracking-wider text-white/30">0{index + 1}</span>
-        <h3 className="text-base font-semibold text-white">{step.label}</h3>
-        <p className="mt-1 text-sm leading-snug text-white/50">{step.description}</p>
-      </div>
+      <p className="pt-2 text-[15px] leading-snug text-white/70">{item.text}</p>
     </motion.div>
   )
 }
@@ -175,7 +104,7 @@ export function Workflow() {
       <div className="absolute top-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
       <div className="absolute bottom-0 left-0 right-0 h-px bg-gradient-to-r from-transparent via-vyllo/20 to-transparent" />
 
-      <div ref={ref} className="relative mx-auto max-w-5xl px-6">
+      <div ref={ref} className="relative mx-auto max-w-3xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
@@ -185,32 +114,40 @@ export function Workflow() {
           <h2 className="mt-3 text-3xl font-bold tracking-tight text-white sm:text-4xl">
             Isso parece o seu dia a dia?
           </h2>
+          <p className="mx-auto mt-4 max-w-2xl text-base text-white/50">
+            Você trabalha a semana inteira, a agenda está cheia — e no final do mês você ainda não sabe exatamente quanto entrou, quanto saiu e o que sobrou.
+          </p>
+          <p className="mt-2 text-sm text-white/40">
+            Se algum desses soa familiar, você veio ao lugar certo:
+          </p>
         </motion.div>
 
-        {/* Desktop layout: horizontal steps with connectors */}
-        <div className="mt-16 hidden items-start md:flex">
-          {STEPS.map((step, i) => (
-            <div key={step.label} className="contents">
-              <Step step={step} index={i} inView={isInView} />
-              {i < STEPS.length - 1 && (
-                <Connector inView={isInView} delay={0.5 + i * 0.2} />
-              )}
-            </div>
-          ))}
-        </div>
-
-        {/* Mobile layout: vertical timeline */}
-        <div className="mt-12 md:hidden">
-          {STEPS.map((step, i) => (
-            <MobileStep
-              key={step.label}
-              step={step}
+        {/* Pain points list */}
+        <div className="mt-12 flex flex-col gap-5">
+          {PAIN_POINTS.map((item, i) => (
+            <PainItem
+              key={item.text}
+              item={item}
               index={i}
               inView={isInView}
-              isLast={i === STEPS.length - 1}
             />
           ))}
         </div>
+
+        {/* Bottom callout */}
+        <motion.div
+          initial={{ opacity: 0, y: 16 }}
+          animate={isInView ? { opacity: 1, y: 0 } : {}}
+          transition={{ delay: 0.8, duration: 0.6, ease }}
+          className="mt-12 rounded-2xl border border-white/10 bg-white/5 px-6 py-5 text-center backdrop-blur-sm"
+        >
+          <p className="text-sm font-medium text-white/80">
+            Se você respondeu sim pra dois ou mais itens acima:
+          </p>
+          <p className="mt-1 text-sm text-white/50">
+            O problema não é você. É que você nunca teve um sistema feito pra funcionar junto.
+          </p>
+        </motion.div>
       </div>
     </section>
   )

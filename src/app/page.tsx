@@ -5,9 +5,10 @@ import { Hero } from "@/components/hero"
 import { FAQS } from "@/data/faq"
 
 const Workflow = dynamic(() => import("@/components/workflow").then((m) => ({ default: m.Workflow })), { ssr: true })
+const BeforeAfter = dynamic(() => import("@/components/before-after").then((m) => ({ default: m.BeforeAfter })), { ssr: true })
 const Features = dynamic(() => import("@/components/features").then((m) => ({ default: m.Features })), { ssr: true })
-const Testimonials = dynamic(() => import("@/components/testimonials").then((m) => ({ default: m.Testimonials })), { ssr: true })
 const Comparison = dynamic(() => import("@/components/comparison").then((m) => ({ default: m.Comparison })), { ssr: true })
+const Testimonials = dynamic(() => import("@/components/testimonials").then((m) => ({ default: m.Testimonials })), { ssr: true })
 const ForYou = dynamic(() => import("@/components/for-you").then((m) => ({ default: m.ForYou })), { ssr: true })
 const Pricing = dynamic(() => import("@/components/pricing").then((m) => ({ default: m.Pricing })), { ssr: true })
 const Faq = dynamic(() => import("@/components/faq").then((m) => ({ default: m.Faq })), { ssr: true })
@@ -106,7 +107,7 @@ const schemaOrg = {
         reviewRating: { "@type": "Rating", ratingValue: "5", bestRating: "5" },
         author: { "@type": "Person", name: "Dra. Larissa Luduvice", jobTitle: "Periodontista" },
         reviewBody:
-          "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro.",
+          "Eu usava três coisas diferentes: uma agenda no Google, prontuário num sistema separado e uma planilha pra financeiro. Com a Vyllo, quando eu termino o atendimento, já aparece no financeiro. Mudou completamente como eu encerro o meu dia.",
       },
       {
         "@type": "Review",
@@ -178,9 +179,10 @@ export default function Home() {
         <main>
           <Hero />
           <Workflow />
+          <BeforeAfter />
           <Features />
-          <Testimonials />
           <Comparison />
+          <Testimonials />
           <ForYou />
           <Pricing />
           <Faq />
