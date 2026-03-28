@@ -3,6 +3,7 @@
 import { Reveal } from "./motion"
 import { ArrowRight, Check } from "lucide-react"
 import { useRefParam } from "@/hooks/use-ref-param"
+import Image from "next/image"
 
 export function Cta() {
   const { registroUrl } = useRefParam()
@@ -37,6 +38,7 @@ export function Cta() {
       <div className="relative mx-auto max-w-3xl px-6">
         <Reveal>
           <div className="flex flex-col items-center text-center">
+            <Image src="/vyllo-logo-white.png" alt="Vyllo" width={360} height={360} className="mb-8 h-12 w-12 scale-[3]" />
             <h2 className="text-3xl font-bold tracking-tight text-white sm:text-4xl md:text-5xl">
               Você estudou anos pra cuidar de dente.
             </h2>

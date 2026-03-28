@@ -35,7 +35,7 @@ export function Navbar() {
     >
       <nav className="mx-auto flex max-w-5xl items-center justify-between px-6 py-4">
         <a href="#" className="flex items-center">
-          <Image src="/vyllo-logo.svg" alt="Vyllo" width={400} height={400} className="h-10 w-10 scale-[2.5] origin-left" />
+          <Image src="/vyllo-logo-new.png" alt="Vyllo" width={360} height={360} className="h-10 w-10 scale-[2.5] origin-left" />
         </a>
 
         <div className="hidden items-center gap-8 md:flex">

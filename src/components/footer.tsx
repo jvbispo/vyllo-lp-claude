@@ -9,7 +9,7 @@ export function Footer() {
         <div className="flex flex-col gap-8 md:flex-row md:items-start md:justify-between">
           <div>
             <a href="#" className="flex items-center">
-              <Image src="/vyllo-logo.svg" alt="Vyllo" width={400} height={400} className="h-8 w-8 scale-[2.5] origin-left" />
+              <Image src="/vyllo-logo-new.png" alt="Vyllo" width={360} height={360} className="h-10 w-10 scale-[2.5] origin-left" />
             </a>
             <p className="mt-3 max-w-xs text-sm text-neutral-400">
               Software de gestao para dentistas.

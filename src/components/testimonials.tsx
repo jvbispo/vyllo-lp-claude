@@ -5,9 +5,10 @@ const TESTIMONIALS = [
   {
     name: "Dra. Larissa Luduvice",
     role: "Periodontista",
-    text: "Eu usava três coisas diferentes: uma agenda no Google, prontuário num sistema separado e uma planilha pra financeiro. No final do mês eu passava horas tentando entender o que tinha acontecido. Com a Vyllo, quando eu termino o atendimento, já aparece no financeiro. Parece coisa pequena, mas mudou completamente como eu encerro o meu dia.",
+    text: "Vi na Vyllo algo que sentia falta no sistema que usava. Facilidade de uso e completude encantam. Alguns minutinhos no fim do dia e ganhei muito mais controle financeiro. O suporte é de fácil acesso. Só agradecer à Vyllo 🫶🏻",
     accent: "#60a5fa",
     image: "/dra-larissa-luduvice.jpg",
+    videoUrl: "https://vyllo-assets.s3.us-east-2.amazonaws.com/video-lp-larissa.mp4",
   },
   {
     name: "Dr. Luca Albuquerque",
@@ -15,6 +16,7 @@ const TESTIMONIALS = [
     text: "É você bater o olho e ver como está o consultório. Não dá erro, não tem fórmula, é um facilitador que cumpre muito mais do que promete.",
     accent: "#a78bfa",
     image: "/dr-luca-albuquerque.jpg",
+    videoUrl: "https://vyllo-assets.s3.us-east-2.amazonaws.com/video-lp-luca.mp4",
   },
   {
     name: "Dra. Victoria Santana",
@@ -32,6 +34,59 @@ const TESTIMONIALS = [
     imageScale: 1.55,
   },
 ]
+
+function TestimonialCard({ t }: { t: (typeof TESTIMONIALS)[number] }) {
+  const hasVideo = "videoUrl" in t && t.videoUrl
+
+  return (
+    <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07] md:p-8">
+      {/* Accent line top */}
+      <div
+        className="absolute top-0 left-6 right-6 h-px md:left-8 md:right-8"
+        style={{ background: `linear-gradient(90deg, ${t.accent}40, transparent)` }}
+      />
+
+      {/* Video — vertical, centered, compact */}
+      {hasVideo && (
+        <div className="mb-5 flex justify-center">
+          <div className="w-3/5 md:w-1/2 overflow-hidden rounded-xl">
+            <video
+              src={t.videoUrl}
+              controls
+              preload="metadata"
+              playsInline
+              className="aspect-[9/16] w-full rounded-xl object-cover"
+            />
+          </div>
+        </div>
+      )}
+
+      <div className="flex flex-1 flex-col">
+        <blockquote className="text-base leading-relaxed text-white/70 md:text-lg md:leading-relaxed">
+          &ldquo;{t.text}&rdquo;
+        </blockquote>
+
+        <figcaption className="mt-auto flex items-center gap-3 border-t border-white/10 pt-4 md:gap-4 md:pt-5">
+          <div className={`relative shrink-0 overflow-hidden rounded-full ring-2 ring-white/10 ${(t as { imageScale?: number }).imageScale ? "h-12 w-12 md:h-14 md:w-14" : "h-10 w-10 md:h-12 md:w-12"}`}>
+            <Image
+              src={t.image}
+              alt=""
+              width={56}
+              height={56}
+              className="object-cover"
+              style={(t as { imageScale?: number }).imageScale != null ? { transform: `scale(${(t as { imageScale: number }).imageScale})` } : undefined}
+              sizes="(min-width: 768px) 56px, 48px"
+            />
+          </div>
+          <div className="min-w-0">
+            <p className="text-sm font-medium text-white md:text-base">{t.name}</p>
+            <p className="text-xs text-white/40 md:text-sm">{t.role}</p>
+          </div>
+        </figcaption>
+      </div>
+    </figure>
+  )
+}
 
 export function Testimonials() {
   return (
@@ -80,35 +135,7 @@ export function Testimonials() {
         <RevealStagger className="mt-14 grid gap-6 md:grid-cols-2 md:gap-8 lg:gap-10">
           {TESTIMONIALS.map((t) => (
             <RevealItem key={t.name}>
-              <figure className="relative flex h-full flex-col justify-between rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm transition-all hover:border-white/15 hover:bg-white/[0.07] md:p-8">
-                {/* Accent line top */}
-                <div
-                  className="absolute top-0 left-6 right-6 h-px md:left-8 md:right-8"
-                  style={{ background: `linear-gradient(90deg, ${t.accent}40, transparent)` }}
-                />
-
-                <blockquote className="text-base leading-relaxed text-white/70 md:text-lg md:leading-relaxed">
-                  &ldquo;{t.text}&rdquo;
-                </blockquote>
-
-                <figcaption className="mt-6 flex items-center gap-3 border-t border-white/10 pt-4 md:mt-8 md:gap-4 md:pt-5">
-                  <div className={`relative shrink-0 overflow-hidden rounded-full ring-2 ring-white/10 ${(t as { imageScale?: number }).imageScale ? "h-12 w-12 md:h-14 md:w-14" : "h-10 w-10 md:h-12 md:w-12"}`}>
-                    <Image
-                      src={t.image}
-                      alt=""
-                      width={56}
-                      height={56}
-                      className="object-cover"
-                      style={(t as { imageScale?: number }).imageScale != null ? { transform: `scale(${(t as { imageScale: number }).imageScale})` } : undefined}
-                      sizes="(min-width: 768px) 56px, 48px"
-                    />
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-sm font-medium text-white md:text-base">{t.name}</p>
-                    <p className="text-xs text-white/40 md:text-sm">{t.role}</p>
-                  </div>
-                </figcaption>
-              </figure>
+              <TestimonialCard t={t} />
             </RevealItem>
           ))}
         </RevealStagger>

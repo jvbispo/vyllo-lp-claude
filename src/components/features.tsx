@@ -20,49 +20,48 @@ const STEPS: {
     number: "01",
     title: "Você agenda o paciente",
     description:
-      "Cria o horário, escolhe o procedimento, define o plano de tratamento se for um caso de múltiplas sessões (ortodontia, implante, etc.). Pode bloquear horários de almoço, reunião ou folga diretamente na agenda.",
+      "Cria o horário, escolhe o procedimento e o plano de tratamento. Bloqueia horários de almoço ou folga direto na agenda.",
     color: "#0066ff",
   },
   {
     icon: MessageCircle,
     number: "02",
-    title: "O sistema confirma no dia anterior",
+    title: "Confirmação automática no WhatsApp",
     description:
-      "WhatsApp automático pro paciente na véspera. Você não precisa fazer nada. O status na agenda muda conforme o paciente confirma: pendente, confirmado.",
+      "Na véspera, o paciente recebe um WhatsApp automático. Sem você fazer nada.",
     color: "#8b5cf6",
   },
   {
     icon: Activity,
     number: "03",
-    title: "Na hora do atendimento, você acompanha em tempo real",
+    title: "Acompanhe em tempo real",
     description:
-      'O paciente chegou? Clica "chegou". Começou? "Atendendo". Terminou? "Concluído" — e é nesse clique que a mágica acontece.',
+      'Chegou? Clica "chegou". Terminou? "Concluído" — e é nesse clique que a mágica acontece.',
     color: "#10b981",
   },
   {
     icon: DollarSign,
     number: "04",
-    title: "O financeiro é registrado automaticamente",
+    title: "Financeiro registrado automaticamente",
     description:
-      "Ao marcar como concluído, a Vyllo já lança a receita no financeiro vinculada ao tratamento. Você registra o pagamento (à vista, parcelado, convênio) — e o sistema atualiza as contas a receber do paciente automaticamente.",
+      "Ao concluir, a receita é lançada no financeiro vinculada ao tratamento. Contas a receber atualizadas na hora.",
     color: "#f59e0b",
   },
   {
     icon: BarChart3,
     number: "05",
-    title: "O dashboard mostra o lucro real",
+    title: "Dashboard com lucro real",
     description:
-      "Quanto você faturou hoje. Quanto ainda vai receber. Qual procedimento dá mais lucro. Se você está perto da sua meta mensal. Tudo atualizado em tempo real, sem você tocar em nada.",
+      "Quanto faturou, quanto vai receber, qual procedimento dá mais lucro. Tudo em tempo real.",
     color: "#f43f5e",
   },
 ]
 
-/* ── Desktop: horizontal timeline ── */
+/* ── Desktop: grid card ── */
 function DesktopStep({
   step,
   index,
   inView,
-  isLast,
 }: {
   step: (typeof STEPS)[number]
   index: number
@@ -70,51 +69,37 @@ function DesktopStep({
   isLast: boolean
 }) {
   return (
-    <div className="flex flex-1 items-start">
-      <motion.div
-        className="flex flex-col items-center text-center"
-        initial={{ opacity: 0, y: 24 }}
-        animate={inView ? { opacity: 1, y: 0 } : {}}
-        transition={{ delay: 0.2 + index * 0.15, duration: 0.5, ease }}
+    <motion.div
+      className="flex flex-col items-center text-center"
+      initial={{ opacity: 0, y: 24 }}
+      animate={inView ? { opacity: 1, y: 0 } : {}}
+      transition={{ delay: 0.2 + index * 0.12, duration: 0.5, ease }}
+    >
+      {/* Icon */}
+      <div
+        className="relative flex h-14 w-14 items-center justify-center rounded-2xl border shadow-lg"
+        style={{
+          borderColor: `${step.color}30`,
+          backgroundColor: `${step.color}10`,
+          boxShadow: `0 4px 20px ${step.color}15`,
+        }}
       >
-        {/* Icon */}
-        <div
-          className="relative flex h-14 w-14 items-center justify-center rounded-2xl border shadow-lg"
-          style={{
-            borderColor: `${step.color}30`,
-            backgroundColor: `${step.color}10`,
-            boxShadow: `0 4px 20px ${step.color}15`,
-          }}
-        >
-          <step.icon className="h-6 w-6" style={{ color: step.color }} />
-        </div>
+        <step.icon className="h-6 w-6" style={{ color: step.color }} />
+      </div>
 
-        <span
-          className="mt-4 text-xs font-bold tracking-wider"
-          style={{ color: step.color }}
-        >
-          PASSO {step.number}
-        </span>
-        <h3 className="mt-1 max-w-[200px] text-sm font-semibold text-neutral-900">
-          {step.title}
-        </h3>
-        <p className="mt-2 max-w-[220px] text-[13px] leading-relaxed text-neutral-500">
-          {step.description}
-        </p>
-      </motion.div>
-
-      {/* Arrow connector */}
-      {!isLast && (
-        <motion.div
-          className="flex shrink-0 items-center px-2 pt-6"
-          initial={{ opacity: 0, scale: 0.5 }}
-          animate={inView ? { opacity: 0.3, scale: 1 } : {}}
-          transition={{ delay: 0.4 + index * 0.15, duration: 0.4, ease }}
-        >
-          <ArrowRight className="h-4 w-4 text-neutral-300" />
-        </motion.div>
-      )}
-    </div>
+      <span
+        className="mt-4 text-xs font-bold tracking-wider"
+        style={{ color: step.color }}
+      >
+        PASSO {step.number}
+      </span>
+      <h3 className="mt-2 text-base font-semibold text-neutral-900">
+        {step.title}
+      </h3>
+      <p className="mt-2 text-sm leading-relaxed text-neutral-500">
+        {step.description}
+      </p>
+    </motion.div>
   )
 }
 
@@ -193,17 +178,30 @@ export function Features() {
           </p>
         </motion.div>
 
-        {/* Desktop: horizontal */}
-        <div className="mt-16 hidden items-start lg:flex">
-          {STEPS.map((step, i) => (
-            <DesktopStep
-              key={step.number}
-              step={step}
-              index={i}
-              inView={isInView}
-              isLast={i === STEPS.length - 1}
-            />
-          ))}
+        {/* Desktop: grid 3 + 2 */}
+        <div className="mt-16 hidden lg:block">
+          <div className="grid grid-cols-3 gap-10">
+            {STEPS.slice(0, 3).map((step, i) => (
+              <DesktopStep
+                key={step.number}
+                step={step}
+                index={i}
+                inView={isInView}
+                isLast={false}
+              />
+            ))}
+          </div>
+          <div className="mt-10 grid grid-cols-2 gap-10 max-w-3xl mx-auto">
+            {STEPS.slice(3).map((step, i) => (
+              <DesktopStep
+                key={step.number}
+                step={step}
+                index={i + 3}
+                inView={isInView}
+                isLast={i === 1}
+              />
+            ))}
+          </div>
         </div>
 
         {/* Mobile: vertical */}
