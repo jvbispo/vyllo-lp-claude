@@ -26,18 +26,17 @@ const CYCLES: {
 ]
 
 const INCLUDED = [
-  "Agenda com confirmação automática no WhatsApp (200 créditos/mês)",
-  "Prontuário digital com odontograma multifaces",
-  "Anamnese com modelos personalizáveis",
-  "Plano de tratamento com prioridades e sessões",
-  "Orçamentos integrados",
-  "Fotos antes/depois com Slider Visual",
-  "Dashboard financeiro com lucro real",
+  "Agenda com status em tempo real",
+  "Confirmação automática WhatsApp D-1",
+  "Prontuário digital com odontograma e timeline",
+  "Planos de tratamento com sessões",
+  "Financeiro integrado automaticamente",
+  "Contas a receber por paciente e por tratamento",
   "Despesas recorrentes automáticas",
-  "Relatórios e recibos em PDF",
-  "Múltiplos locais de atendimento",
-  "Suporte humano via WhatsApp",
-  "Calculadora de Lucro grátis pra sempre",
+  "Relatório de lucro por procedimento",
+  "Meta mensal com acompanhamento",
+  "Dashboard com lucro real em tempo real",
+  "Suporte humano (não é bot)",
 ]
 
 function CycleSelector({
@@ -192,8 +191,11 @@ export function Pricing() {
             </div>
             <p className="text-sm font-medium text-vyllo">Vyllo Profissional</p>
             <h2 className="mt-4 text-3xl font-bold tracking-tight text-neutral-900 sm:text-4xl md:text-5xl">
-              Um plano. Tudo dentro. R$79,90.
+              Simples. Sem pegadinha.
             </h2>
+            <p className="mt-3 text-base text-neutral-500">
+              Plano único. Tudo incluso. Sem módulo premium. Sem surpresa no boleto.
+            </p>
 
             <div className="mt-8 w-full max-w-xs">
               <CycleSelector cycle={cycle} setCycle={setCycle} />
@@ -233,7 +235,16 @@ export function Pricing() {
                 </a>
               </div>
               <p className="text-xs text-neutral-400">
-                Sem cartão. Cancele quando quiser. Sério.
+                Sem compromisso. Cancela em 2 cliques. Sem multa.
+                Se não gostar, você não paga nada — literalmente.
+              </p>
+              <p className="mt-3 text-sm font-medium text-neutral-600">
+                R$63,90 por mês. São R$2,13 por dia.
+                Menos do que o café e o pão de queijo que você compra antes de entrar no consultório.
+              </p>
+              <p className="mt-2 text-xs text-amber-600">
+                Este é o preço de lançamento. Quando encerrarmos, o preço volta pra R$79,90.
+                Quem assinar agora trava o valor — mesmo nas renovações.
               </p>
             </div>
           </div>

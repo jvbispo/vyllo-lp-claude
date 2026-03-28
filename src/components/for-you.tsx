@@ -2,31 +2,37 @@
 
 import { motion, useInView } from "framer-motion"
 import { useRef } from "react"
-import { Check } from "lucide-react"
+import { Check, X } from "lucide-react"
 import { Reveal } from "./motion"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
 const CHECKS = [
-  "Trabalha sozinho ou com equipe enxuta (1 a 3 cadeiras)",
-  "Já tentou organizar as finanças em planilhas e desistiu",
-  "Não sabe o lucro real dos seus procedimentos",
-  "Perde pacientes por falta de confirmação",
-  "Quer prontuário no celular, tablet ou computador, não em papel",
-  "Não quer pagar R$120+/mês num sistema cheio de coisa que não usa",
-  "Quer testar antes de pagar. sem cartão, sem compromisso",
+  "Você é dentista autônomo com 1 a 3 cadeiras",
+  "Você trabalha sozinho ou com uma auxiliar",
+  "Você quer saber exatamente quanto está lucrando — não chutando",
+  "Você usa planilha, papel ou sistemas que não conversam entre si",
+  "Você está cansado de terminar o atendimento e ainda ter que lançar dado em outro lugar",
+  "Você quer controle financeiro sem precisar de contador pra entender o próprio negócio",
+  "Você quer um sistema que cresce com você — sem complicação desde o primeiro dia",
+]
+
+const ANTI_CHECKS = [
+  "Você tem clínica com mais de 5 dentistas — a Vyllo ainda não é feita para essa escala",
+  "Você está bem com a planilha e não quer mudar nada — respeito, sério",
+  "Você precisa de integração com convênio de grandes operadoras — ainda não temos",
 ]
 
 function CheckItem({ text, index, inView }: { text: string; index: number; inView: boolean }) {
   return (
     <motion.li
-      className="flex items-center gap-3"
+      className="flex items-start gap-3"
       initial={{ opacity: 0, x: -12 }}
       animate={inView ? { opacity: 1, x: 0 } : {}}
       transition={{ delay: 0.15 + index * 0.08, duration: 0.4, ease }}
     >
       <motion.div
-        className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-vyllo/10"
+        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-vyllo/10"
         initial={{ scale: 0 }}
         animate={inView ? { scale: 1 } : {}}
         transition={{ delay: 0.2 + index * 0.08, type: "spring", stiffness: 400, damping: 20 }}
@@ -34,6 +40,27 @@ function CheckItem({ text, index, inView }: { text: string; index: number; inVie
         <Check className="h-3.5 w-3.5 text-vyllo" />
       </motion.div>
       <span className="text-base text-neutral-600">{text}</span>
+    </motion.li>
+  )
+}
+
+function AntiCheckItem({ text, index, inView }: { text: string; index: number; inView: boolean }) {
+  return (
+    <motion.li
+      className="flex items-start gap-3"
+      initial={{ opacity: 0, x: -12 }}
+      animate={inView ? { opacity: 1, x: 0 } : {}}
+      transition={{ delay: 0.6 + index * 0.08, duration: 0.4, ease }}
+    >
+      <motion.div
+        className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-red-50"
+        initial={{ scale: 0 }}
+        animate={inView ? { scale: 1 } : {}}
+        transition={{ delay: 0.65 + index * 0.08, type: "spring", stiffness: 400, damping: 20 }}
+      >
+        <X className="h-3.5 w-3.5 text-red-400" />
+      </motion.div>
+      <span className="text-base text-neutral-500">{text}</span>
     </motion.li>
   )
 }
@@ -57,6 +84,25 @@ export function ForYou() {
               <CheckItem key={text} text={text} index={i} inView={inView} />
             ))}
           </ul>
+
+          <Reveal delay={0.5}>
+            <h3 className="mt-12 text-lg font-semibold text-neutral-700">
+              Não é pra você se:
+            </h3>
+          </Reveal>
+
+          <ul className="mt-4 space-y-4">
+            {ANTI_CHECKS.map((text, i) => (
+              <AntiCheckItem key={text} text={text} index={i} inView={inView} />
+            ))}
+          </ul>
+
+          <Reveal delay={0.8}>
+            <p className="mt-8 text-sm font-medium text-neutral-500 italic">
+              A Vyllo é especialista em dentista autônomo.
+              Não tentamos ser tudo pra todo mundo.
+            </p>
+          </Reveal>
         </div>
       </div>
     </section>
