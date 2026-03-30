@@ -13,11 +13,6 @@ export const metadata: Metadata = {
   description:
     "Sistema de gestão para dentista autônomo: agenda com confirmação automática no WhatsApp (200 mensagens/mês inclusas), prontuário com odontograma multifaces, anamnese, orçamentos e o único software com lucro real por procedimento — não só faturamento. R$ 79,90/mês. Trial de 15 dias grátis, sem cartão.",
   metadataBase: new URL("https://vyllo.com.br"),
-  icons: {
-    icon: "/icon-logo-no-bg.png",
-    shortcut: "/icon-logo-no-bg.png",
-    apple: "/icon-logo-no-bg.png",
-  },
   alternates: {
     canonical: "/",
   },

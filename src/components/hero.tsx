@@ -16,14 +16,14 @@ type View = "agenda" | "financeiro" | "prontuario"
 const VIEWS: { id: View; label: string; icon: typeof Calendar }[] = [
   { id: "agenda", label: "Agenda", icon: Calendar },
   { id: "financeiro", label: "Financeiro", icon: DollarSign },
-  { id: "prontuario", label: "Prontuario", icon: FileText },
+  { id: "prontuario", label: "Prontuário", icon: FileText },
 ]
 
 const SIDEBAR_ITEMS = [
-  { icon: Home, label: "Inicio", active: false },
+  { icon: Home, label: "Início", active: false },
   { icon: Calendar, label: "Agenda", active: false },
   { icon: Users, label: "Pacientes", active: false },
-  { icon: FileText, label: "Prontuario", active: false },
+  { icon: FileText, label: "Prontuário", active: false },
   { icon: DollarSign, label: "Financeiro", active: false },
   { icon: Settings, label: "Config", active: false },
 ]
@@ -36,13 +36,13 @@ const WEEKDAYS = ["Seg", "Ter", "Qua", "Qui", "Sex"]
 const APPOINTMENTS = [
   { day: 0, start: 0, duration: 1, name: "Maria S.", proc: "Limpeza", color: "#0066ff" },
   { day: 0, start: 2, duration: 2, name: "Joao P.", proc: "Canal", color: "#8b5cf6" },
-  { day: 1, start: 1, duration: 1, name: "Ana C.", proc: "Restauracao", color: "#0066ff" },
-  { day: 1, start: 3, duration: 1, name: "Carlos R.", proc: "Extracao", color: "#f59e0b" },
+  { day: 1, start: 1, duration: 1, name: "Ana C.", proc: "Restauração", color: "#0066ff" },
+  { day: 1, start: 3, duration: 1, name: "Carlos R.", proc: "Extração", color: "#f59e0b" },
   { day: 2, start: 0, duration: 1, name: "Patricia L.", proc: "Clareamento", color: "#10b981" },
   { day: 2, start: 2, duration: 1, name: "Lucas M.", proc: "Consulta", color: "#0066ff" },
   { day: 3, start: 1, duration: 2, name: "Fernanda B.", proc: "Ortodontia", color: "#8b5cf6" },
   { day: 4, start: 0, duration: 1, name: "Ricardo A.", proc: "Limpeza", color: "#10b981" },
-  { day: 4, start: 3, duration: 1, name: "Camila D.", proc: "Avaliacao", color: "#0066ff" },
+  { day: 4, start: 3, duration: 1, name: "Camila D.", proc: "Avaliação", color: "#0066ff" },
 ]
 
 function AgendaView() {
@@ -226,10 +226,10 @@ function FinanceiroView() {
 /* ── Prontuario View ──── */
 
 const TIMELINE_ITEMS = [
-  { date: "12 Fev", type: "Nota clinica", desc: "Restauracao dente 36 — resina composta", color: "#0066ff" },
-  { date: "05 Fev", type: "Orcamento", desc: "Tratamento ortodontico — R$ 4.500", color: "#8b5cf6" },
+  { date: "12 Fev", type: "Nota clínica", desc: "Restauração dente 36 — resina composta", color: "#0066ff" },
+  { date: "05 Fev", type: "Orçamento", desc: "Tratamento ortodôntico — R$ 4.500", color: "#8b5cf6" },
   { date: "28 Jan", type: "Plano", desc: "Plano de tratamento atualizado — 5 itens", color: "#10b981" },
-  { date: "20 Jan", type: "Nota clinica", desc: "Avaliacao inicial + radiografia panoramica", color: "#0066ff" },
+  { date: "20 Jan", type: "Nota clínica", desc: "Avaliação inicial + radiografia panorâmica", color: "#0066ff" },
   { date: "15 Jan", type: "Anamnese", desc: "Anamnese preenchida — sem alergias", color: "#f59e0b" },
 ]
 
@@ -267,7 +267,7 @@ function ProntuarioView() {
             <div className="flex h-4 w-4 items-center justify-center rounded bg-vyllo/10">
               <FileText className="h-2.5 w-2.5 text-vyllo" />
             </div>
-            <span className="text-[9px] font-medium text-neutral-600 md:text-[10px]">Nota clinica — Dente 36</span>
+            <span className="text-[9px] font-medium text-neutral-600 md:text-[10px]">Nota clínica — Dente 36</span>
           </div>
           <span className="text-[8px] text-neutral-400">12 Fev 2026</span>
         </div>
@@ -278,7 +278,7 @@ function ProntuarioView() {
             animate={{ opacity: 1 }}
             transition={{ delay: 0.25, duration: 0.3 }}
           >
-            Restauracao classe II MOD em resina composta. Anestesia infiltrativa, isolamento absoluto. Acido fosforico 37% por 15s em esmalte, adesivo aplicado em 2 camadas.
+            Restauração classe II MOD em resina composta. Anestesia infiltrativa, isolamento absoluto. Ácido fosfórico 37% por 15s em esmalte, adesivo aplicado em 2 camadas.
           </motion.p>
           <div className="flex items-center gap-2">
             <motion.div
@@ -419,7 +419,7 @@ function InteractiveDashboard() {
           >
             {/* Logo area */}
             <div className="mb-4 flex items-center">
-              <Image src="/vyllo-logo.svg" alt="Vyllo" width={200} height={200} className="h-5 w-5 scale-[2] origin-left" />
+              <Image src="/vyllo-logo-new.png" alt="Vyllo" width={360} height={360} className="h-5 w-5 scale-[3] origin-left" />
             </div>
 
             {/* Nav items */}
@@ -625,6 +625,9 @@ export function Hero() {
             <span className="text-sm text-neutral-500">
               Sem compromisso. Cancela quando quiser.
             </span>
+            <span className="text-sm text-neutral-400">
+              Sem cartão · 200 confirmações WhatsApp inclusas · Pronto em 5 min
+            </span>
             <span className="text-sm text-neutral-500">
               Não quer testar ainda? Descubra seu lucro real por procedimento, é grátis.
             </span>
@@ -636,9 +639,6 @@ export function Hero() {
               <ArrowRight className="h-3 w-3" />
             </a>
           </div>
-          <span className="text-sm text-neutral-400">
-            Sem cartão · 200 confirmações WhatsApp inclusas · Pronto em 5 min
-          </span>
         </motion.div>
       </div>
     </section>

@@ -12,7 +12,7 @@ export function Footer() {
               <Image src="/vyllo-logo-new.png" alt="Vyllo" width={360} height={360} className="h-10 w-10 scale-[2.5] origin-left" />
             </a>
             <p className="mt-3 max-w-xs text-sm text-neutral-400">
-              Software de gestao para dentistas.
+              Software de gestão para dentistas.
             </p>
           </div>
 

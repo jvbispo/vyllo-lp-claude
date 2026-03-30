@@ -242,10 +242,6 @@ export function Pricing() {
                 R$63,90 por mês. São R$2,13 por dia.
                 Menos do que o café e o pão de queijo que você compra antes de entrar no consultório.
               </p>
-              <p className="mt-2 text-xs text-amber-600">
-                Este é o preço de lançamento. Quando encerrarmos, o preço volta pra R$79,90.
-                Quem assinar agora trava o valor — mesmo nas renovações.
-              </p>
             </div>
           </div>
         </Reveal>
