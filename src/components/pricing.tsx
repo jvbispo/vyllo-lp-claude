@@ -5,6 +5,7 @@ import { motion, AnimatePresence, useInView } from "framer-motion"
 import { Reveal, CountUp } from "./motion"
 import { Check, ArrowRight } from "lucide-react"
 import { useRefParam } from "@/hooks/use-ref-param"
+import { analytics } from "@/lib/analytics"
 
 const BADGE_STAGGER_DELAY = 0.05
 const SPOTLIGHT_LOOP_MS = 46000
@@ -228,6 +229,7 @@ export function Pricing() {
                 <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg" />
                 <a
                   href={registroUrl}
+                  onClick={() => analytics.trialCTAClicked("pricing")}
                   className="group relative inline-flex items-center gap-2 rounded-lg bg-vyllo px-8 py-3.5 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
                 >
                   Testar grátis por 15 dias
