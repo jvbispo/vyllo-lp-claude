@@ -6,6 +6,7 @@ import { ArrowRight, Calendar, FileText, DollarSign, Home, Users, Settings, Tren
 import Image from "next/image"
 import { useRef, type ReactNode } from "react"
 import { useRefParam } from "@/hooks/use-ref-param"
+import { analytics } from "@/lib/analytics"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
@@ -615,6 +616,7 @@ export function Hero() {
             <div className="absolute -inset-1 rounded-xl bg-gradient-to-r from-[#0066ff] to-[#8b5cf6] opacity-20 blur-lg transition-opacity group-hover:opacity-30" />
             <a
               href={registroUrl}
+              onClick={() => analytics.trialCTAClicked("hero")}
               className="group relative inline-flex items-center justify-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl hover:shadow-vyllo/25 active:scale-[0.98]"
             >
               Testar grátis por 15 dias — sem cartão
@@ -633,6 +635,7 @@ export function Hero() {
             </span>
             <a
               href={calcUrl}
+              onClick={() => analytics.calculatorCTAClicked("hero")}
               className="inline-flex items-center gap-1.5 rounded-md border border-neutral-200/80 bg-transparent px-3 py-1.5 text-xs font-medium text-neutral-500 transition-colors hover:border-vyllo/30 hover:text-vyllo"
             >
               Ir para calculadora de Lucro

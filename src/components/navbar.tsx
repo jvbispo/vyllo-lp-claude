@@ -3,6 +3,7 @@
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import { cn } from "@/lib/cn"
+import { analytics } from "@/lib/analytics"
 import { Menu, X } from "lucide-react"
 import { useRefParam } from "@/hooks/use-ref-param"
 
@@ -53,18 +54,21 @@ export function Navbar() {
         <div className="hidden items-center gap-4 md:flex">
           <a
             href={calcUrl}
+            onClick={() => analytics.calculatorCTAClicked("navbar")}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
             Calcule seu Lucro Real →
           </a>
           <a
             href={registroUrl}
+            onClick={() => analytics.trialCTAClicked("navbar")}
             className="rounded-lg bg-vyllo px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-[#0052cc]"
           >
             Testar grátis 15 dias
           </a>
           <a
             href={loginUrl}
+            onClick={() => analytics.loginClicked()}
             className="text-sm text-neutral-500 transition-colors hover:text-neutral-900"
           >
             Login
@@ -97,21 +101,21 @@ export function Navbar() {
             <a
               href={calcUrl}
               className="text-base text-neutral-500"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { analytics.calculatorCTAClicked("navbar"); setMobileOpen(false) }}
             >
               Calcule seu Lucro Real →
             </a>
             <a
               href={registroUrl}
               className="rounded-lg bg-vyllo px-4 py-3 text-center text-base font-medium text-white"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { analytics.trialCTAClicked("navbar"); setMobileOpen(false) }}
             >
               Testar grátis 15 dias
             </a>
             <a
               href={loginUrl}
               className="text-base text-neutral-500"
-              onClick={() => setMobileOpen(false)}
+              onClick={() => { analytics.loginClicked(); setMobileOpen(false) }}
             >
               Login
             </a>

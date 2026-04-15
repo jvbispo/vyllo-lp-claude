@@ -5,6 +5,7 @@ import { useRef } from "react"
 import { Calendar, MessageCircle, Activity, DollarSign, BarChart3, ArrowRight } from "lucide-react"
 import type { LucideIcon } from "lucide-react"
 import { useRefParam } from "@/hooks/use-ref-param"
+import { analytics } from "@/lib/analytics"
 
 const ease = [0.21, 0.47, 0.32, 0.98] as const
 
@@ -232,6 +233,7 @@ export function Features() {
           </p>
           <a
             href={registroUrl}
+            onClick={() => analytics.trialCTAClicked("features")}
             className="mt-6 inline-flex items-center gap-2 rounded-lg bg-vyllo px-6 py-3 text-sm font-medium text-white shadow-lg shadow-vyllo/20 transition-all hover:bg-[#0052cc] hover:shadow-xl active:scale-[0.98]"
           >
             Ver como funciona na prática — teste grátis por 15 dias
